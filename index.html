@@ -1,0 +1,1260 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#ff6c24">
+<title>TALK GAME TALK</title>
+<style>
+:root{--orange:#ff6c24;--cream:#F3E7D3;--paper:#fffaf0;--ink:#171717;--muted:#6e6255;--shadow:0 16px 36px rgba(54,35,11,.15)}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;min-height:100%;background:var(--cream);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;color:var(--ink)}
+body{min-height:100dvh;overflow:hidden}
+a{color:inherit;text-decoration:none;-webkit-tap-highlight-color:transparent}
+.shell{height:calc(100dvh - 40px);display:grid;grid-template-rows:auto 1fr auto;gap:12px;padding:max(12px,env(safe-area-inset-top)) 14px max(10px,env(safe-area-inset-bottom));}
+header{text-align:center}
+.logo{font-weight:1000;line-height:.86;letter-spacing:-.05em;font-size:clamp(28px,8vw,44px)}
+.logo span{display:block} .logo .game{color:var(--orange)}
+.tag{margin-top:8px;font-size:12px;color:var(--muted);font-weight:700;letter-spacing:.08em}
+.viewport{position:relative;min-height:0}
+.screen{display:none;height:100%;grid-template-rows:1fr auto;gap:14px}
+#start{display:grid}
+.screen:target{display:grid}
+body:has(.question-screen:target) #start{display:none}
+.stage{display:flex;align-items:center;justify-content:center;min-height:0}
+.card{width:min(100%,620px);min-height:42dvh;border:3px solid var(--ink);border-radius:28px;background:var(--paper);box-shadow:var(--shadow);padding:28px 24px;display:flex;align-items:center;justify-content:center;text-align:center;position:relative}
+.card::before{content:"";position:absolute;top:14px;left:16px;right:16px;height:9px;border-radius:99px;background:var(--orange)}
+.question{font-size:clamp(28px,7.4vw,46px);line-height:1.34;font-weight:1000;letter-spacing:-.04em}
+.startText{font-size:clamp(30px,8vw,48px)}
+.counter{position:absolute;bottom:12px;right:16px;font-size:11px;color:#9a8b74;font-weight:800}
+.controls{display:grid;grid-template-columns:1fr 1.3fr;gap:10px}
+.nav{min-height:62px;border-radius:18px;border:3px solid var(--ink);background:#fff8e9;color:var(--ink);font-weight:1000;font-size:18px;box-shadow:0 6px 0 rgba(23,23,23,.12);display:flex;align-items:center;justify-content:center;text-align:center;padding:8px}
+.nav.next{background:var(--orange)} .nav:active{transform:translateY(2px);box-shadow:0 3px 0 rgba(23,23,23,.12)}
+.start-controls{grid-template-columns:1fr}
+.ad{min-height:58px;border:2px dashed #b9a88d;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#8a7b67;background:rgba(255,255,255,.42);text-align:center;padding:8px}
+@media(max-height:700px){.shell{gap:8px;padding-top:8px}.tag{display:none}.card{min-height:38dvh;padding:24px 20px}.nav{min-height:54px}.ad{min-height:48px}}
+</style>
+</head>
+<body>
+<div class="shell">
+<header>
+  <div class="logo"><span>TALK</span><span class="game">GAME</span><span>TALK</span></div>
+  <div class="tag">1 TAP, 1 QUESTION, MORE TALK.</div>
+</header>
+<div class="viewport">
+  <section class="screen" id="start">
+    <main class="stage">
+      <article class="card">
+        <div class="question startText">ゲームの思い出から、<br>会話がはじまる。</div>
+      </article>
+    </main>
+    <nav class="controls start-controls">
+      <a class="nav next" href="#q1">お題を出す →</a>
+    </nav>
+  </section>
+  
+<section class="screen question-screen" id="q1">
+  <main class="stage">
+    <article class="card">
+      <div class="question">初めて徹夜したゲームは？</div>
+      <div class="counter">1 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#start">← 最初へ</a>
+    <a class="nav next" href="#q2">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q2">
+  <main class="stage">
+    <article class="card">
+      <div class="question">子どもの頃、一番遊んだゲームは？</div>
+      <div class="counter">2 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q1">← 前のお題</a>
+    <a class="nav next" href="#q3">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q3">
+  <main class="stage">
+    <article class="card">
+      <div class="question">初めて自分で買ったゲームは？</div>
+      <div class="counter">3 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q2">← 前のお題</a>
+    <a class="nav next" href="#q4">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q4">
+  <main class="stage">
+    <article class="card">
+      <div class="question">一番長く遊んだゲームは？</div>
+      <div class="counter">4 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q3">← 前のお題</a>
+    <a class="nav next" href="#q5">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q5">
+  <main class="stage">
+    <article class="card">
+      <div class="question">友達と一番盛り上がったゲームは？</div>
+      <div class="counter">5 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q4">← 前のお題</a>
+    <a class="nav next" href="#q6">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q6">
+  <main class="stage">
+    <article class="card">
+      <div class="question">セーブせずに進んで後悔した思い出は？</div>
+      <div class="counter">6 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q5">← 前のお題</a>
+    <a class="nav next" href="#q7">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q7">
+  <main class="stage">
+    <article class="card">
+      <div class="question">一番印象に残っているNPCは？</div>
+      <div class="counter">7 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q6">← 前のお題</a>
+    <a class="nav next" href="#q8">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q8">
+  <main class="stage">
+    <article class="card">
+      <div class="question">一番達成感があったゲームは？</div>
+      <div class="counter">8 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q7">← 前のお題</a>
+    <a class="nav next" href="#q9">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q9">
+  <main class="stage">
+    <article class="card">
+      <div class="question">一番緊張したボス戦は？</div>
+      <div class="counter">9 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q8">← 前のお題</a>
+    <a class="nav next" href="#q10">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q10">
+  <main class="stage">
+    <article class="card">
+      <div class="question">期待しすぎて合わなかったゲームは？</div>
+      <div class="counter">10 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q9">← 前のお題</a>
+    <a class="nav next" href="#q11">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q11">
+  <main class="stage">
+    <article class="card">
+      <div class="question">戦闘だけで何時間でも遊べると思ったゲームは？</div>
+      <div class="counter">11 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q10">← 前のお題</a>
+    <a class="nav next" href="#q12">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q12">
+  <main class="stage">
+    <article class="card">
+      <div class="question">ゲームのために予定をずらしたことはある？</div>
+      <div class="counter">12 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q11">← 前のお題</a>
+    <a class="nav next" href="#q13">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q13">
+  <main class="stage">
+    <article class="card">
+      <div class="question">攻略情報を見ずに遊んでよかったと思うゲームは？</div>
+      <div class="counter">13 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q12">← 前のお題</a>
+    <a class="nav next" href="#q14">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q14">
+  <main class="stage">
+    <article class="card">
+      <div class="question">今までで一番『自分、ゲーム好きだな』と思った瞬間は？</div>
+      <div class="counter">14 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q13">← 前のお題</a>
+    <a class="nav next" href="#q15">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q15">
+  <main class="stage">
+    <article class="card">
+      <div class="question">ゲームのアイテムを1つだけ現実に持ち込めるなら何がいい？</div>
+      <div class="counter">15 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q14">← 前のお題</a>
+    <a class="nav next" href="#q16">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q16">
+  <main class="stage">
+    <article class="card">
+      <div class="question">ゲームの職業を1つ選んで現実で働くなら何を選ぶ？</div>
+      <div class="counter">16 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q15">← 前のお題</a>
+    <a class="nav next" href="#q17">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q17">
+  <main class="stage">
+    <article class="card">
+      <div class="question">ゲームがきっかけで始めた趣味はある？</div>
+      <div class="counter">17 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q16">← 前のお題</a>
+    <a class="nav next" href="#q18">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q18">
+  <main class="stage">
+    <article class="card">
+      <div class="question">ゲームオーバーのペナルティは重い方がいい？</div>
+      <div class="counter">18 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q17">← 前のお題</a>
+    <a class="nav next" href="#q19">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q19">
+  <main class="stage">
+    <article class="card">
+      <div class="question">気づいたら朝になっていたゲームは？</div>
+      <div class="counter">19 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q18">← 前のお題</a>
+    <a class="nav next" href="#q20">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q20">
+  <main class="stage">
+    <article class="card">
+      <div class="question">ゲームで本気で誰かに感謝したことはある？</div>
+      <div class="counter">20 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q19">← 前のお題</a>
+    <a class="nav next" href="#q21">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q21">
+  <main class="stage">
+    <article class="card">
+      <div class="question">育成が一番楽しかったゲームは？</div>
+      <div class="counter">21 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q20">← 前のお題</a>
+    <a class="nav next" href="#q22">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q22">
+  <main class="stage">
+    <article class="card">
+      <div class="question">収集が止まらなくなったゲームは？</div>
+      <div class="counter">22 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q21">← 前のお題</a>
+    <a class="nav next" href="#q23">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q23">
+  <main class="stage">
+    <article class="card">
+      <div class="question">今まで一番泣けたゲームは？</div>
+      <div class="counter">23 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q22">← 前のお題</a>
+    <a class="nav next" href="#q24">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q24">
+  <main class="stage">
+    <article class="card">
+      <div class="question">無人島にゲームを1本だけ持っていけるなら、どんなゲーム？</div>
+      <div class="counter">24 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q23">← 前のお題</a>
+    <a class="nav next" href="#q25">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q25">
+  <main class="stage">
+    <article class="card">
+      <div class="question">一番笑ったゲームの思い出は？</div>
+      <div class="counter">25 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q24">← 前のお題</a>
+    <a class="nav next" href="#q26">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q26">
+  <main class="stage">
+    <article class="card">
+      <div class="question">難易度は高いほど面白い？</div>
+      <div class="counter">26 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q25">← 前のお題</a>
+    <a class="nav next" href="#q27">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q27">
+  <main class="stage">
+    <article class="card">
+      <div class="question">キャラメイクと固定主人公、どっちが好き？</div>
+      <div class="counter">27 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q26">← 前のお題</a>
+    <a class="nav next" href="#q28">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q28">
+  <main class="stage">
+    <article class="card">
+      <div class="question">探索しているだけで楽しかったゲームは？</div>
+      <div class="counter">28 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q27">← 前のお題</a>
+    <a class="nav next" href="#q29">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q29">
+  <main class="stage">
+    <article class="card">
+      <div class="question">今までで一番操作していて気持ちよかったゲームは？</div>
+      <div class="counter">29 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q28">← 前のお題</a>
+    <a class="nav next" href="#q30">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q30">
+  <main class="stage">
+    <article class="card">
+      <div class="question">オンライン要素はなくてもいい？</div>
+      <div class="counter">30 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q29">← 前のお題</a>
+    <a class="nav next" href="#q31">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q31">
+  <main class="stage">
+    <article class="card">
+      <div class="question">記憶を消して、もう一度遊びたいゲームは？</div>
+      <div class="counter">31 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q30">← 前のお題</a>
+    <a class="nav next" href="#q32">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q32">
+  <main class="stage">
+    <article class="card">
+      <div class="question">親に隠れて遊んだゲームの思い出は？</div>
+      <div class="counter">32 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q31">← 前のお題</a>
+    <a class="nav next" href="#q33">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q33">
+  <main class="stage">
+    <article class="card">
+      <div class="question">ゲームの発売延期はどこまで許せる？</div>
+      <div class="counter">33 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q32">← 前のお題</a>
+    <a class="nav next" href="#q34">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q34">
+  <main class="stage">
+    <article class="card">
+      <div class="question">一番しょうもない理由でやめたゲームは？</div>
+      <div class="counter">34 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q33">← 前のお題</a>
+    <a class="nav next" href="#q35">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q35">
+  <main class="stage">
+    <article class="card">
+      <div class="question">最後まで嫌いになれなかった敵は？</div>
+      <div class="counter">35 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q34">← 前のお題</a>
+    <a class="nav next" href="#q36">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q36">
+  <main class="stage">
+    <article class="card">
+      <div class="question">ゲーム中に思わず声が出た瞬間は？</div>
+      <div class="counter">36 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q35">← 前のお題</a>
+    <a class="nav next" href="#q37">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q37">
+  <main class="stage">
+    <article class="card">
+      <div class="question">クリア後のやり込みは必要？</div>
+      <div class="counter">37 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q36">← 前のお題</a>
+    <a class="nav next" href="#q38">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q38">
+  <main class="stage">
+    <article class="card">
+      <div class="question">自分がラスボスになるなら、どんな能力を持ちたい？</div>
+      <div class="counter">38 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q37">← 前のお題</a>
+    <a class="nav next" href="#q39">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q39">
+  <main class="stage">
+    <article class="card">
+      <div class="question">自力で見つけたとき嬉しかった隠し要素は？</div>
+      <div class="counter">39 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q38">← 前のお題</a>
+    <a class="nav next" href="#q40">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q40">
+  <main class="stage">
+    <article class="card">
+      <div class="question">主人公は無口とよく喋るタイプ、どっちが好き？</div>
+      <div class="counter">40 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q39">← 前のお題</a>
+    <a class="nav next" href="#q41">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q41">
+  <main class="stage">
+    <article class="card">
+      <div class="question">クリアした瞬間に放心したゲームは？</div>
+      <div class="counter">41 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q40">← 前のお題</a>
+    <a class="nav next" href="#q42">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q42">
+  <main class="stage">
+    <article class="card">
+      <div class="question">一番好きだったゲームの世界は？</div>
+      <div class="counter">42 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q41">← 前のお題</a>
+    <a class="nav next" href="#q43">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q43">
+  <main class="stage">
+    <article class="card">
+      <div class="question">逆に、絶対に住みたくないゲーム世界は？</div>
+      <div class="counter">43 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q42">← 前のお題</a>
+    <a class="nav next" href="#q44">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q44">
+  <main class="stage">
+    <article class="card">
+      <div class="question">途中で投げたことを少し後悔しているゲームは？</div>
+      <div class="counter">44 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q43">← 前のお題</a>
+    <a class="nav next" href="#q45">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q45">
+  <main class="stage">
+    <article class="card">
+      <div class="question">一生にあと3本しかゲームを遊べないなら、どう選ぶ？</div>
+      <div class="counter">45 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q44">← 前のお題</a>
+    <a class="nav next" href="#q46">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q46">
+  <main class="stage">
+    <article class="card">
+      <div class="question">一番悔しかったゲームの思い出は？</div>
+      <div class="counter">46 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q45">← 前のお題</a>
+    <a class="nav next" href="#q47">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q47">
+  <main class="stage">
+    <article class="card">
+      <div class="question">ロード時間とグラフィック、どっちを優先してほしい？</div>
+      <div class="counter">47 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q46">← 前のお題</a>
+    <a class="nav next" href="#q48">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q48">
+  <main class="stage">
+    <article class="card">
+      <div class="question">積んだまま何年も気になっているゲームは？</div>
+      <div class="counter">48 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q47">← 前のお題</a>
+    <a class="nav next" href="#q49">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q49">
+  <main class="stage">
+    <article class="card">
+      <div class="question">リメイクで内容を大きく変えるのはアリ？</div>
+      <div class="counter">49 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q48">← 前のお題</a>
+    <a class="nav next" href="#q50">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q50">
+  <main class="stage">
+    <article class="card">
+      <div class="question">今、一番遊びたいのに時間が足りないゲームは？</div>
+      <div class="counter">50 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q49">← 前のお題</a>
+    <a class="nav next" href="#q51">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q51">
+  <main class="stage">
+    <article class="card">
+      <div class="question">自分の人生の一時期と強く結びついているゲームは？</div>
+      <div class="counter">51 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q50">← 前のお題</a>
+    <a class="nav next" href="#q52">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q52">
+  <main class="stage">
+    <article class="card">
+      <div class="question">対人戦と協力プレイ、どっちが好き？</div>
+      <div class="counter">52 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q51">← 前のお題</a>
+    <a class="nav next" href="#q53">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q53">
+  <main class="stage">
+    <article class="card">
+      <div class="question">みんな評価しているけど、自分には合わなかったゲームは？</div>
+      <div class="counter">53 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q52">← 前のお題</a>
+    <a class="nav next" href="#q54">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q54">
+  <main class="stage">
+    <article class="card">
+      <div class="question">寄り道ばかりして本編が進まなかったゲームは？</div>
+      <div class="counter">54 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q53">← 前のお題</a>
+    <a class="nav next" href="#q55">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q55">
+  <main class="stage">
+    <article class="card">
+      <div class="question">ボイスはフルボイスの方がいい？</div>
+      <div class="counter">55 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q54">← 前のお題</a>
+    <a class="nav next" href="#q56">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q56">
+  <main class="stage">
+    <article class="card">
+      <div class="question">一番好きだったゲームの街や拠点は？</div>
+      <div class="counter">56 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q55">← 前のお題</a>
+    <a class="nav next" href="#q57">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q57">
+  <main class="stage">
+    <article class="card">
+      <div class="question">一番守りたくなったキャラクターは？</div>
+      <div class="counter">57 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q56">← 前のお題</a>
+    <a class="nav next" href="#q58">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q58">
+  <main class="stage">
+    <article class="card">
+      <div class="question">エンディングが忘れられないゲームは？</div>
+      <div class="counter">58 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q57">← 前のお題</a>
+    <a class="nav next" href="#q59">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q59">
+  <main class="stage">
+    <article class="card">
+      <div class="question">それでもゲームを続けている理由は？</div>
+      <div class="counter">59 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q58">← 前のお題</a>
+    <a class="nav next" href="#q60">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q60">
+  <main class="stage">
+    <article class="card">
+      <div class="question">取り返しのつかない要素はアリ？ナシ？</div>
+      <div class="counter">60 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q59">← 前のお題</a>
+    <a class="nav next" href="#q61">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q61">
+  <main class="stage">
+    <article class="card">
+      <div class="question">チュートリアルは丁寧な方がいい？それとも放っておいてほしい？</div>
+      <div class="counter">61 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q60">← 前のお題</a>
+    <a class="nav next" href="#q62">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q62">
+  <main class="stage">
+    <article class="card">
+      <div class="question">人生を変えたゲームは？</div>
+      <div class="counter">62 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q61">← 前のお題</a>
+    <a class="nav next" href="#q63">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q63">
+  <main class="stage">
+    <article class="card">
+      <div class="question">子どもの頃と今で評価が変わったゲームは？</div>
+      <div class="counter">63 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q62">← 前のお題</a>
+    <a class="nav next" href="#q64">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q64">
+  <main class="stage">
+    <article class="card">
+      <div class="question">昔の友達を思い出すゲームは？</div>
+      <div class="counter">64 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q63">← 前のお題</a>
+    <a class="nav next" href="#q65">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q65">
+  <main class="stage">
+    <article class="card">
+      <div class="question">攻略情報を見るのはアリ？ナシ？</div>
+      <div class="counter">65 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q64">← 前のお題</a>
+    <a class="nav next" href="#q66">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q66">
+  <main class="stage">
+    <article class="card">
+      <div class="question">説明書を読まずに始めて困ったゲームは？</div>
+      <div class="counter">66 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q65">← 前のお題</a>
+    <a class="nav next" href="#q67">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q67">
+  <main class="stage">
+    <article class="card">
+      <div class="question">一番感情移入した主人公はどんなタイプ？</div>
+      <div class="counter">67 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q66">← 前のお題</a>
+    <a class="nav next" href="#q68">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q68">
+  <main class="stage">
+    <article class="card">
+      <div class="question">一番好きだった悪役は？</div>
+      <div class="counter">68 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q67">← 前のお題</a>
+    <a class="nav next" href="#q69">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q69">
+  <main class="stage">
+    <article class="card">
+      <div class="question">一番意味不明だったゲームの思い出は？</div>
+      <div class="counter">69 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q68">← 前のお題</a>
+    <a class="nav next" href="#q70">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q70">
+  <main class="stage">
+    <article class="card">
+      <div class="question">ゲームはクリアまで遊ばなくてもいい？</div>
+      <div class="counter">70 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q69">← 前のお題</a>
+    <a class="nav next" href="#q71">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q71">
+  <main class="stage">
+    <article class="card">
+      <div class="question">音楽を聴くだけで場面が浮かぶゲームは？</div>
+      <div class="counter">71 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q70">← 前のお題</a>
+    <a class="nav next" href="#q72">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q72">
+  <main class="stage">
+    <article class="card">
+      <div class="question">大切な人に一度は遊んでほしいゲームは？</div>
+      <div class="counter">72 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q71">← 前のお題</a>
+    <a class="nav next" href="#q73">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q73">
+  <main class="stage">
+    <article class="card">
+      <div class="question">ゲームから教わったことはある？</div>
+      <div class="counter">73 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q72">← 前のお題</a>
+    <a class="nav next" href="#q74">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q74">
+  <main class="stage">
+    <article class="card">
+      <div class="question">一番好きだった相棒キャラは？</div>
+      <div class="counter">74 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q73">← 前のお題</a>
+    <a class="nav next" href="#q75">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q75">
+  <main class="stage">
+    <article class="card">
+      <div class="question">自分がゲームの主人公になるなら、どんなジャンルがいい？</div>
+      <div class="counter">75 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q74">← 前のお題</a>
+    <a class="nav next" href="#q76">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q76">
+  <main class="stage">
+    <article class="card">
+      <div class="question">実績やトロフィーは気にする？</div>
+      <div class="counter">76 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q75">← 前のお題</a>
+    <a class="nav next" href="#q77">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q77">
+  <main class="stage">
+    <article class="card">
+      <div class="question">今でもタイトルを聞くだけで懐かしくなるゲームは？</div>
+      <div class="counter">77 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q76">← 前のお題</a>
+    <a class="nav next" href="#q78">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q78">
+  <main class="stage">
+    <article class="card">
+      <div class="question">逆に、評価は低いけど自分は大好きなゲームは？</div>
+      <div class="counter">78 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q77">← 前のお題</a>
+    <a class="nav next" href="#q79">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q79">
+  <main class="stage">
+    <article class="card">
+      <div class="question">オープンワールドと一本道、どっちが好き？</div>
+      <div class="counter">79 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q78">← 前のお題</a>
+    <a class="nav next" href="#q80">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q80">
+  <main class="stage">
+    <article class="card">
+      <div class="question">ゲーム内のミニゲームに本編以上にハマったことはある？</div>
+      <div class="counter">80 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q79">← 前のお題</a>
+    <a class="nav next" href="#q81">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q81">
+  <main class="stage">
+    <article class="card">
+      <div class="question">ゲームを通して仲良くなった人はいる？</div>
+      <div class="counter">81 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q80">← 前のお題</a>
+    <a class="nav next" href="#q82">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q82">
+  <main class="stage">
+    <article class="card">
+      <div class="question">家族との思い出があるゲームは？</div>
+      <div class="counter">82 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q81">← 前のお題</a>
+    <a class="nav next" href="#q83">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q83">
+  <main class="stage">
+    <article class="card">
+      <div class="question">人にはちょっと言いづらいくらいハマったゲームは？</div>
+      <div class="counter">83 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q82">← 前のお題</a>
+    <a class="nav next" href="#q84">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q84">
+  <main class="stage">
+    <article class="card">
+      <div class="question">一番許せなかった裏切りキャラは？</div>
+      <div class="counter">84 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q83">← 前のお題</a>
+    <a class="nav next" href="#q85">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q85">
+  <main class="stage">
+    <article class="card">
+      <div class="question">住めるなら、どんなゲーム世界に住みたい？</div>
+      <div class="counter">85 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q84">← 前のお題</a>
+    <a class="nav next" href="#q86">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q86">
+  <main class="stage">
+    <article class="card">
+      <div class="question">ゲームにファストトラベルは必要？</div>
+      <div class="counter">86 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q85">← 前のお題</a>
+    <a class="nav next" href="#q87">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q87">
+  <main class="stage">
+    <article class="card">
+      <div class="question">買って後悔したゲームはある？</div>
+      <div class="counter">87 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q86">← 前のお題</a>
+    <a class="nav next" href="#q88">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q88">
+  <main class="stage">
+    <article class="card">
+      <div class="question">10年後もゲームを遊んでいると思う？</div>
+      <div class="counter">88 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q87">← 前のお題</a>
+    <a class="nav next" href="#q89">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q89">
+  <main class="stage">
+    <article class="card">
+      <div class="question">ゲームをやめようと思った時期はある？</div>
+      <div class="counter">89 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q88">← 前のお題</a>
+    <a class="nav next" href="#q90">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q90">
+  <main class="stage">
+    <article class="card">
+      <div class="question">初見では絶対わからないと思った仕掛けは？</div>
+      <div class="counter">90 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q89">← 前のお題</a>
+    <a class="nav next" href="#q91">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q91">
+  <main class="stage">
+    <article class="card">
+      <div class="question">一番笑えるバグに遭遇したことは？</div>
+      <div class="counter">91 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q90">← 前のお題</a>
+    <a class="nav next" href="#q92">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q92">
+  <main class="stage">
+    <article class="card">
+      <div class="question">一度だけゲームの能力を現実で使えるなら、どんな能力がいい？</div>
+      <div class="counter">92 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q91">← 前のお題</a>
+    <a class="nav next" href="#q93">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q93">
+  <main class="stage">
+    <article class="card">
+      <div class="question">攻略情報を見ればよかったと思ったゲームは？</div>
+      <div class="counter">93 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q92">← 前のお題</a>
+    <a class="nav next" href="#q94">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q94">
+  <main class="stage">
+    <article class="card">
+      <div class="question">一番しょうもない理由でキレたゲームは？</div>
+      <div class="counter">94 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q93">← 前のお題</a>
+    <a class="nav next" href="#q95">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q95">
+  <main class="stage">
+    <article class="card">
+      <div class="question">ストーリー重視とゲーム性重視、どっち？</div>
+      <div class="counter">95 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q94">← 前のお題</a>
+    <a class="nav next" href="#q96">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q96">
+  <main class="stage">
+    <article class="card">
+      <div class="question">ゲームは1人で遊ぶ方が好き？誰かと遊ぶ方が好き？</div>
+      <div class="counter">96 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q95">← 前のお題</a>
+    <a class="nav next" href="#q97">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q97">
+  <main class="stage">
+    <article class="card">
+      <div class="question">コントローラーを強く握りすぎたことはある？</div>
+      <div class="counter">97 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q96">← 前のお題</a>
+    <a class="nav next" href="#q98">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q98">
+  <main class="stage">
+    <article class="card">
+      <div class="question">一生ひとつのジャンルしか遊べないなら何を選ぶ？</div>
+      <div class="counter">98 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q97">← 前のお題</a>
+    <a class="nav next" href="#q99">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q99">
+  <main class="stage">
+    <article class="card">
+      <div class="question">今の自分だからこそ、もう一度遊びたいゲームは？</div>
+      <div class="counter">99 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q98">← 前のお題</a>
+    <a class="nav next" href="#q100">次のお題 →</a>
+  </nav>
+</section>
+<section class="screen question-screen" id="q100">
+  <main class="stage">
+    <article class="card">
+      <div class="question">一番怖かったゲームは？</div>
+      <div class="counter">100 / 100</div>
+    </article>
+  </main>
+  <nav class="controls">
+    <a class="nav" href="#q99">← 前のお題</a>
+    <a class="nav next" href="#q1">もう一周 →</a>
+  </nav>
+</section>
+</div>
+<div class="ad">広告枠（公開時に広告コードへ差し替え）</div>
+</div>
+</body>
+</html>
