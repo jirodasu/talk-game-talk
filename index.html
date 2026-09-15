@@ -98,7 +98,7 @@ header{text-align:center;padding-top:0}
   box-shadow:var(--shadow-button);
 }
 .nav:active{transform:scale(.97)}
-.start-controls{grid-template-columns:1fr}
+.start-controls{grid-template-columns:1fr;transform:translateY(calc(-1 * (var(--action-lift) + var(--ad-safety-gap))))}
 .start-controls .nav{min-height:68px;font-size:19px}
 .ad{
   width:min(320px,100%);min-height:50px;margin:-4px auto 0;transform:translateY(calc(-1 * var(--action-lift)));
