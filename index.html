@@ -128,7 +128,6 @@ header{text-align:center;padding-top:0}
   .nav:active{transform:none}
 }
 
-/* Question transition */
 .card{will-change:transform,opacity}
 .card.anim-out-next{animation:tgtOutNext 150ms cubic-bezier(.4,0,1,1) both}
 .card.anim-in-next{animation:tgtInNext 240ms var(--ease-out) both}
@@ -141,7 +140,6 @@ header{text-align:center;padding-top:0}
 @media(prefers-reduced-motion:reduce){
   .card.anim-out-next,.card.anim-in-next,.card.anim-out-prev,.card.anim-in-prev{animation:none}
 }
-
 </style>
 </head>
 <body>
@@ -162,9 +160,7 @@ header{text-align:center;padding-top:0}
         </div>
       </article>
     </main>
-    <nav class="controls start-controls">
-      <a class="nav next" id="startBtn" href="#q1">お題を出す →</a>
-    </nav>
+    <nav class="controls start-controls"><a class="nav next" id="startBtn" href="#q1">お題を出す →</a></nav>
   </section>
   <section class="screen question-screen" id="questionScreen">
     <main class="stage">
@@ -173,82 +169,24 @@ header{text-align:center;padding-top:0}
         <div class="counter" id="counter"></div>
       </article>
     </main>
-    <nav class="controls">
-      <a class="nav" id="prevBtn" href="#start">← 最初へ</a>
-      <a class="nav next" id="nextBtn" href="#q2">次のお題 →</a>
-    </nav>
+    <nav class="controls"><a class="nav" id="prevBtn" href="#start">← 最初へ</a><a class="nav next" id="nextBtn" href="#q2">次のお題 →</a></nav>
   </section>
 </div>
-<div class="ad" aria-label="広告">
-  <script type="text/javascript" src="https://j.zucks.net.zimg.jp/j?f=737274"></script>
-</div>
+<div class="ad" aria-label="広告"><script type="text/javascript" src="https://j.zucks.net.zimg.jp/j?f=737274"></script></div>
 </div>
 <script>
-(() => {
-  const questions=["初めて徹夜したゲームは？","子どもの頃、一番遊んだゲームは？","初めて自分で買ったゲームは？","一番長く遊んだゲームは？","友達と一番盛り上がったゲームは？","セーブせずに進んで後悔した思い出は？","一番印象に残っているNPCは？","一番達成感があったゲームは？","一番緊張したボス戦は？","期待しすぎて合わなかったゲームは？","戦闘だけで何時間でも遊べると思ったゲームは？","ゲームのために予定をずらしたことはある？","攻略情報を見ずに遊んでよかったと思うゲームは？","今までで一番『自分、ゲーム好きだな』と思った瞬間は？","ゲームのアイテムを1つだけ現実に持ち込めるなら何がいい？","ゲームの職業を1つ選んで現実で働くなら何を選ぶ？","ゲームがきっかけで始めた趣味はある？","ゲームオーバーのペナルティは重い方がいい？","気づいたら朝になっていたゲームは？","ゲームで本気で誰かに感謝したことはある？","育成が一番楽しかったゲームは？","収集が止まらなくなったゲームは？","今まで一番泣けたゲームは？","無人島にゲームを1本だけ持っていけるなら、どんなゲーム？","一番笑ったゲームの思い出は？","難易度は高いほど面白い？","キャラメイクと固定主人公、どっちが好き？","探索しているだけで楽しかったゲームは？","今までで一番操作していて気持ちよかったゲームは？","オンライン要素はなくてもいい？","記憶を消して、もう一度遊びたいゲームは？","親に隠れて遊んだゲームの思い出は？","ゲームの発売延期はどこまで許せる？","一番しょうもない理由でやめたゲームは？","最後まで嫌いになれなかった敵は？","ゲーム中に思わず声が出た瞬間は？","クリア後のやり込みは必要？","自分がラスボスになるなら、どんな能力を持ちたい？","自力で見つけたとき嬉しかった隠し要素は？","主人公は無口とよく喋るタイプ、どっちが好き？","クリアした瞬間に放心したゲームは？","一番好きだったゲームの世界は？","逆に、絶対に住みたくないゲーム世界は？","途中で投げたことを少し後悔しているゲームは？","一生にあと3本しかゲームを遊べないなら、どう選ぶ？","一番悔しかったゲームの思い出は？","ロード時間とグラフィック、どっちを優先してほしい？","積んだまま何年も気になっているゲームは？","リメイクで内容を大きく変えるのはアリ？","今、一番遊びたいのに時間が足りないゲームは？","自分の人生の一時期と強く結びついているゲームは？","対人戦と協力プレイ、どっちが好き？","みんな評価しているけど、自分には合わなかったゲームは？","寄り道ばかりして本編が進まなかったゲームは？","ボイスはフルボイスの方がいい？","一番好きだったゲームの街や拠点は？","一番守りたくなったキャラクターは？","エンディングが忘れられないゲームは？","それでもゲームを続けている理由は？","取り返しのつかない要素はアリ？ナシ？","チュートリアルは丁寧な方がいい？それとも放っておいてほしい？","人生を変えたゲームは？","子どもの頃と今で評価が変わったゲームは？","昔の友達を思い出すゲームは？","攻略情報を見るのはアリ？ナシ？","説明書を読まずに始めて困ったゲームは？","一番感情移入した主人公はどんなタイプ？","一番好きだった悪役は？","一番意味不明だったゲームの思い出は？","ゲームはクリアまで遊ばなくてもいい？","音楽を聴くだけで場面が浮かぶゲームは？","大切な人に一度は遊んでほしいゲームは？","ゲームから教わったことはある？","一番好きだった相棒キャラは？","自分がゲームの主人公になるなら、どんなジャンルがいい？","実績やトロフィーは気にする？","今でもタイトルを聞くだけで懐かしくなるゲームは？","逆に、評価は低いけど自分は大好きなゲームは？","オープンワールドと一本道、どっちが好き？","ゲーム内のミニゲームに本編以上にハマったことはある？","ゲームを通して仲良くなった人はいる？","家族との思い出があるゲームは？","人にはちょっと言いづらいくらいハマったゲームは？","一番許せなかった裏切りキャラは？","住めるなら、どんなゲーム世界に住みたい？","ゲームにファストトラベルは必要？","買って後悔したゲームはある？","10年後もゲームを遊んでいると思う？","ゲームをやめようと思った時期はある？","初見では絶対わからないと思った仕掛けは？","一番笑えるバグに遭遇したことは？","一度だけゲームの能力を現実で使えるなら、どんな能力がいい？","攻略情報を見ればよかったと思ったゲームは？","一番しょうもない理由でキレたゲームは？","ストーリー重視とゲーム性重視、どっち？","ゲームは1人で遊ぶ方が好き？誰かと遊ぶ方が好き？","コントローラーを強く握りすぎたことはある？","一生ひとつのジャンルしか遊べないなら何を選ぶ？","今の自分だからこそ、もう一度遊びたいゲームは？","一番怖かったゲームは？"];
-  const start=document.getElementById('startScreen');
-  const screen=document.getElementById('questionScreen');
-  const card=document.getElementById('questionCard');
-  const text=document.getElementById('questionText');
-  const counter=document.getElementById('counter');
-  const startBtn=document.getElementById('startBtn');
-  const prev=document.getElementById('prevBtn');
-  const next=document.getElementById('nextBtn');
-  let current=0,moving=false;
-
-  const setMode=(questionMode)=>{start.style.display=questionMode?'none':'grid';screen.style.display=questionMode?'grid':'none';};
-  const render=(n)=>{
-    current=Math.max(1,Math.min(100,n));
-    text.textContent=questions[current-1];
-    counter.textContent=`${current} / 100`;
-    prev.textContent=current===1?'← 最初へ':'← 前のお題';
-    prev.href=current===1?'#start':`#q${current-1}`;
-    next.textContent=current===100?'もう一周 →':'次のお題 →';
-    next.href=current===100?'#q1':`#q${current+1}`;
-    setMode(true);
-  };
-  const fromHash=()=>{
-    const m=location.hash.match(/^#q(\d+)$/);
-    if(m) render(Number(m[1])); else setMode(false);
-  };
-  const animateTo=(target,dir)=>{
-    if(moving)return;
-    moving=true;
-    const outClass=dir==='next'?'anim-out-next':'anim-out-prev';
-    const inClass=dir==='next'?'anim-in-next':'anim-in-prev';
-    const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const finish=()=>{
-      card.classList.remove('anim-out-next','anim-out-prev');
-      location.hash=target;
-      requestAnimationFrame(()=>{
-        card.classList.remove('anim-in-next','anim-in-prev');
-        if(reduced){moving=false;return;}
-        void card.offsetWidth;
-        card.classList.add(inClass);
-        const done=()=>{card.classList.remove(inClass);moving=false;};
-        card.addEventListener('animationend',done,{once:true});
-        setTimeout(done,320);
-      });
-    };
-    if(reduced){location.hash=target;moving=false;return;}
-    card.classList.add(outClass);
-    card.addEventListener('animationend',finish,{once:true});
-    setTimeout(finish,210);
-  };
-
-  startBtn.addEventListener('click',e=>{e.preventDefault();location.hash='#q1';});
-  prev.addEventListener('click',e=>{
-    e.preventDefault();
-    if(current===1){location.hash='#start';return;}
-    animateTo(`#q${current-1}`,'prev');
-  });
-  next.addEventListener('click',e=>{
-    e.preventDefault();
-    const target=current===100?'#q1':`#q${current+1}`;
-    animateTo(target,'next');
-  });
-  addEventListener('hashchange',fromHash);
-  fromHash();
+(()=>{
+const questions=["初めて徹夜したゲームは？","子どもの頃、一番遊んだゲームは？","初めて自分で買ったゲームは？","一番長く遊んだゲームは？","友達と一番盛り上がったゲームは？","セーブせずに進んで後悔した思い出は？","一番印象に残っているNPCは？","一番達成感があったゲームは？","一番緊張したボス戦は？","期待しすぎて合わなかったゲームは？","戦闘だけで何時間でも遊べると思ったゲームは？","ゲームのために予定をずらしたことはある？","攻略情報を見ずに遊んでよかったと思うゲームは？","今までで一番『自分、ゲーム好きだな』と思った瞬間は？","ゲームのアイテムを1つだけ現実に持ち込めるなら何がいい？","ゲームの職業を1つ選んで現実で働くなら何を選ぶ？","ゲームがきっかけで始めた趣味はある？","ゲームオーバーのペナルティは重い方がいい？","気づいたら朝になっていたゲームは？","ゲームで本気で誰かに感謝したことはある？","育成が一番楽しかったゲームは？","収集が止まらなくなったゲームは？","今まで一番泣けたゲームは？","無人島にゲームを1本だけ持っていけるなら、どんなゲーム？","一番笑ったゲームの思い出は？","難易度は高いほど面白い？","キャラメイクと固定主人公、どっちが好き？","探索しているだけで楽しかったゲームは？","今までで一番操作していて気持ちよかったゲームは？","オンライン要素はなくてもいい？","記憶を消して、もう一度遊びたいゲームは？","親に隠れて遊んだゲームの思い出は？","ゲームの発売延期はどこまで許せる？","一番しょうもない理由でやめたゲームは？","最後まで嫌いになれなかった敵は？","ゲーム中に思わず声が出た瞬間は？","クリア後のやり込みは必要？","自分がラスボスになるなら、どんな能力を持ちたい？","自力で見つけたとき嬉しかった隠し要素は？","主人公は無口とよく喋るタイプ、どっちが好き？","クリアした瞬間に放心したゲームは？","一番好きだったゲームの世界は？","逆に、絶対に住みたくないゲーム世界は？","途中で投げたことを少し後悔しているゲームは？","一生にあと3本しかゲームを遊べないなら、どう選ぶ？","一番悔しかったゲームの思い出は？","ロード時間とグラフィック、どっちを優先してほしい？","積んだまま何年も気になっているゲームは？","リメイクで内容を大きく変えるのはアリ？","今、一番遊びたいのに時間が足りないゲームは？","自分の人生の一時期と強く結びついているゲームは？","対人戦と協力プレイ、どっちが好き？","みんな評価しているけど、自分には合わなかったゲームは？","寄り道ばかりして本編が進まなかったゲームは？","ボイスはフルボイスの方がいい？","一番好きだったゲームの街や拠点は？","一番守りたくなったキャラクターは？","エンディングが忘れられないゲームは？","それでもゲームを続けている理由は？","取り返しのつかない要素はアリ？ナシ？","チュートリアルは丁寧な方がいい？それとも放っておいてほしい？","人生を変えたゲームは？","子どもの頃と今で評価が変わったゲームは？","昔の友達を思い出すゲームは？","攻略情報を見るのはアリ？ナシ？","説明書を読まずに始めて困ったゲームは？","一番感情移入した主人公はどんなタイプ？","一番好きだった悪役は？","一番意味不明だったゲームの思い出は？","ゲームはクリアまで遊ばなくてもいい？","音楽を聴くだけで場面が浮かぶゲームは？","大切な人に一度は遊んでほしいゲームは？","ゲームから教わったことはある？","一番好きだった相棒キャラは？","自分がゲームの主人公になるなら、どんなジャンルがいい？","実績やトロフィーは気にする？","今でもタイトルを聞くだけで懐かしくなるゲームは？","逆に、評価は低いけど自分は大好きなゲームは？","オープンワールドと一本道、どっちが好き？","ゲーム内のミニゲームに本編以上にハマったことはある？","ゲームを通して仲良くなった人はいる？","家族との思い出があるゲームは？","人にはちょっと言いづらいくらいハマったゲームは？","一番許せなかった裏切りキャラは？","住めるなら、どんなゲーム世界に住みたい？","ゲームにファストトラベルは必要？","買って後悔したゲームはある？","10年後もゲームを遊んでいると思う？","ゲームをやめようと思った時期はある？","初見では絶対わからないと思った仕掛けは？","一番笑えるバグに遭遇したことは？","一度だけゲームの能力を現実で使えるなら、どんな能力がいい？","攻略情報を見ればよかったと思ったゲームは？","一番しょうもない理由でキレたゲームは？","ストーリー重視とゲーム性重視、どっち？","ゲームは1人で遊ぶ方が好き？誰かと遊ぶ方が好き？","コントローラーを強く握りすぎたことはある？","一生ひとつのジャンルしか遊べないなら何を選ぶ？","今の自分だからこそ、もう一度遊びたいゲームは？","一番怖かったゲームは？"];
+const start=document.getElementById('startScreen'),screen=document.getElementById('questionScreen'),card=document.getElementById('questionCard'),text=document.getElementById('questionText'),counter=document.getElementById('counter'),startBtn=document.getElementById('startBtn'),prev=document.getElementById('prevBtn'),next=document.getElementById('nextBtn');
+let current=0,moving=false;
+const setMode=q=>{start.style.display=q?'none':'grid';screen.style.display=q?'grid':'none'};
+const render=n=>{current=Math.max(1,Math.min(100,n));text.textContent=questions[current-1];counter.textContent=`${current} / 100`;prev.textContent=current===1?'← 最初へ':'← 前のお題';prev.href=current===1?'#start':`#q${current-1}`;next.textContent=current===100?'もう一周 →':'次のお題 →';next.href=current===100?'#q1':`#q${current+1}`;setMode(true)};
+const fromHash=()=>{const m=location.hash.match(/^#q(\d+)$/);m?render(Number(m[1])):setMode(false)};
+const animateTo=(target,dir)=>{if(moving)return;moving=true;const outClass=dir==='next'?'anim-out-next':'anim-out-prev',inClass=dir==='next'?'anim-in-next':'anim-in-prev',reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;if(reduced){location.hash=target;moving=false;return}let outFinished=false,inFinished=false,outTimer=null,inTimer=null;const done=()=>{if(inFinished)return;inFinished=true;clearTimeout(inTimer);card.classList.remove(inClass);moving=false};const finish=()=>{if(outFinished)return;outFinished=true;clearTimeout(outTimer);card.classList.remove(outClass);location.hash=target;requestAnimationFrame(()=>{card.classList.remove('anim-in-next','anim-in-prev');void card.offsetWidth;card.classList.add(inClass);card.addEventListener('animationend',done,{once:true});inTimer=setTimeout(done,320)})};card.classList.add(outClass);card.addEventListener('animationend',finish,{once:true});outTimer=setTimeout(finish,210)};
+startBtn.addEventListener('click',e=>{e.preventDefault();location.hash='#q1'});
+prev.addEventListener('click',e=>{e.preventDefault();if(current===1){location.hash='#start';return}animateTo(`#q${current-1}`,'prev')});
+next.addEventListener('click',e=>{e.preventDefault();animateTo(current===100?'#q1':`#q${current+1}`,'next')});
+addEventListener('hashchange',fromHash);fromHash();
 })();
 </script>
 </body>
