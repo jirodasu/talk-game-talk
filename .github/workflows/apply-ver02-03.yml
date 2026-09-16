@@ -1,0 +1,52 @@
+name: Apply Ver02-03
+
+on:
+  push:
+    paths:
+      - '.github/workflows/apply-ver02-03.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Patch index.html to Ver02-03
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          if 'Ver02-02' not in s:
+              raise SystemExit('Expected Ver02-02 not found')
+          s = s.replace('Ver02-02', 'Ver02-03')
+          start = s.index('.app::after{')
+          end = s.index('\n.pixel-cloud{', start)
+          new = '''.app::after{
+            content:"";
+            position:absolute;
+            left:0;
+            right:0;
+            bottom:0;
+            height:28%;
+            z-index:-3;
+            opacity:.18;
+            background:
+              linear-gradient(to top,rgba(9,70,123,.20) 0 12%,transparent 46%);
+          }'''
+          s = s[:start] + new + s[end:]
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Commit Ver02-03
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Implement Ver02-03 remove lower chevrons"
+          git push origin HEAD:main
