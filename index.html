@@ -1,49 +1,614 @@
 <!doctype html>
+<!-- TALK GAME TALK / Version: Ver02-01 -->
 <html lang="ja">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
-<meta name="theme-color" content="#F4EEE4">
+<meta name="theme-color" content="#2B86D9">
+<meta name="talk-game-talk-version" content="Ver02-01">
 <title>TALK GAME TALK</title>
 <style>
-:root{--accent:#F36A2D;--bg:#F4EEE4;--ink:#1D1C1A;--muted:#756E65;--surface:rgba(255,253,248,.88);--line:rgba(29,28,26,.12);--line-strong:rgba(29,28,26,.2);--shadow-card:0 18px 48px rgba(62,48,32,.10),0 2px 8px rgba(62,48,32,.06);--shadow-button:0 8px 20px rgba(243,106,45,.22);--ease-out:cubic-bezier(.23,1,.32,1);--action-lift:clamp(64px,10dvh,92px);--ad-safety-gap:clamp(26px,3.4dvh,36px)}
-*{box-sizing:border-box}html,body{margin:0;width:100%;min-height:100%;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}body{min-height:100dvh;overflow:hidden}a{color:inherit;text-decoration:none;-webkit-tap-highlight-color:transparent}.shell{width:min(100%,680px);height:100dvh;margin:0 auto;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:clamp(8px,1.2dvh,12px);padding:max(8px,env(safe-area-inset-top)) 16px max(8px,env(safe-area-inset-bottom))}
-header{text-align:center;padding-top:0;position:relative}.logo{font-weight:950;line-height:.84;letter-spacing:-.055em;font-size:clamp(28px,7.6vw,42px)}.logo span{display:block}.logo .game{color:var(--accent)}.tag{margin-top:8px;font-size:11px;color:var(--muted);font-weight:750;letter-spacing:.16em}.lang-toggle{position:absolute;right:0;top:0;display:flex;align-items:center;padding:3px;border:1px solid var(--line-strong);border-radius:999px;background:rgba(255,253,248,.76);font-size:11px;font-weight:850;color:var(--muted);z-index:5}.lang-btn{border:0;background:transparent;color:inherit;font:inherit;padding:6px 8px;border-radius:999px;cursor:pointer;touch-action:manipulation}.lang-btn.active{background:var(--ink);color:#fff}.viewport{position:relative;min-height:0}.screen{display:grid;height:100%;grid-template-rows:minmax(0,1fr) auto;gap:6px}#questionScreen{display:none}.stage{display:flex;align-items:flex-start;justify-content:center;min-height:0;padding-block:0}.card{width:min(100%,560px);height:auto;min-height:29dvh;max-height:35dvh;border:1px solid var(--line-strong);border-radius:26px;background:var(--surface);box-shadow:var(--shadow-card);padding:clamp(22px,5vw,34px) clamp(20px,5vw,32px);display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;margin-inline:auto;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);will-change:transform,opacity}.card::before{content:"";position:absolute;top:0;left:26px;right:26px;height:4px;border-radius:0 0 999px 999px;background:var(--accent)}.question{max-width:13em;font-size:clamp(24px,6vw,38px);line-height:1.32;font-weight:850;letter-spacing:-.045em;text-wrap:balance}.startText{max-width:9em;font-size:clamp(40.5px,10.2vw,60px);line-height:1.20;letter-spacing:-.055em;text-wrap:balance}.startText .copy-line{display:block}.startText.en{max-width:10em;font-size:clamp(36px,9.2vw,54px);line-height:1.12;letter-spacing:-.045em}.question.en{max-width:15em;letter-spacing:-.035em}.counter{position:absolute;bottom:16px;right:18px;min-width:62px;padding:6px 9px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.55);font-size:11px;letter-spacing:.05em;color:var(--muted);font-weight:800}.controls{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.22fr);gap:12px;margin-top:-4px;transform:translateY(calc(-1 * var(--action-lift)))}.question-screen .controls{transform:translateY(calc(-1 * (var(--action-lift) + var(--ad-safety-gap))))}.nav{min-height:64px;border-radius:16px;border:1px solid var(--line-strong);background:rgba(255,253,248,.72);color:var(--ink);font-weight:850;font-size:17px;letter-spacing:-.015em;display:flex;align-items:center;justify-content:center;text-align:center;padding:10px 14px;transition:transform 90ms var(--ease-out),background-color 140ms ease,border-color 140ms ease,box-shadow 140ms ease,filter 90ms ease;touch-action:manipulation;-webkit-tap-highlight-color:transparent;transform:translateZ(0)}.nav.next{color:#171310;background:var(--accent);border-color:rgba(29,28,26,.10);box-shadow:var(--shadow-button)}.nav:active,.nav.tap-animate{transform:scale(.95);filter:brightness(.94)}.nav.tap-animate.next{box-shadow:0 4px 10px rgba(243,106,45,.16)}.start-controls{grid-template-columns:1fr;transform:translateY(calc(-1 * (var(--action-lift) + var(--ad-safety-gap))))}.start-controls .nav{min-height:68px;font-size:19px}.ad{width:min(320px,100%);min-height:50px;margin:-4px auto 0;transform:translateY(calc(-1 * var(--action-lift)));display:flex;align-items:center;justify-content:center;text-align:center;padding:0;background:transparent;border:0;overflow:visible}
-@media(hover:hover) and (pointer:fine){.nav:hover{background:rgba(255,253,248,.95);border-color:rgba(29,28,26,.28)}.nav.next:hover{background:#FA763D;border-color:rgba(29,28,26,.14);box-shadow:0 10px 24px rgba(243,106,45,.28)}}
-@media(max-height:760px){:root{--ad-safety-gap:24px}.shell{gap:8px;padding-top:max(6px,env(safe-area-inset-top));padding-bottom:max(6px,env(safe-area-inset-bottom))}.tag{margin-top:7px;font-size:10px}.card{width:min(100%,540px);min-height:27dvh;max-height:32dvh;border-radius:22px;padding:20px 18px}.card::before{left:22px;right:22px}.question{font-size:clamp(22px,5.6vw,34px)}.nav{min-height:60px;font-size:16px}.start-controls .nav{min-height:62px;font-size:18px}.ad{min-height:46px}}
-@media(max-height:650px){:root{--ad-safety-gap:20px}.tag{display:none}.logo{font-size:clamp(25px,6.8vw,36px)}.card{min-height:25dvh;max-height:30dvh}.controls{gap:8px}.nav{min-height:54px;font-size:15px}.ad{min-height:42px}.lang-toggle{font-size:10px}}
-@media(max-width:390px){.lang-btn{padding:5px 7px}.lang-toggle{right:-2px}}
-.card.anim-out-next{animation:tgtOutNext 150ms cubic-bezier(.4,0,1,1) both}.card.anim-in-next{animation:tgtInNext 240ms var(--ease-out) both}.card.anim-out-prev{animation:tgtOutPrev 150ms cubic-bezier(.4,0,1,1) both}.card.anim-in-prev{animation:tgtInPrev 240ms var(--ease-out) both}@keyframes tgtOutNext{to{transform:translateX(-22px) scale(.985);opacity:0}}@keyframes tgtInNext{from{transform:translateX(28px) scale(.985);opacity:0}to{transform:none;opacity:1}}@keyframes tgtOutPrev{to{transform:translateX(22px) scale(.985);opacity:0}}@keyframes tgtInPrev{from{transform:translateX(-28px) scale(.985);opacity:0}to{transform:none;opacity:1}}@media(prefers-reduced-motion:reduce){.nav{transition:transform 90ms ease,filter 90ms ease,background-color 120ms ease,border-color 120ms ease,box-shadow 120ms ease}.card.anim-out-next,.card.anim-in-next,.card.anim-out-prev,.card.anim-in-prev{animation:none}}
+:root{
+  --sky:#55B6F2;
+  --sky-2:#2F8FDE;
+  --blue:#176FD0;
+  --blue-deep:#0D3B78;
+  --blue-night:#092653;
+  --cyan:#8FD7FF;
+  --cream:#FFF2C9;
+  --paper:#FFF7DA;
+  --paper-ink:#17325C;
+  --gold:#E4B348;
+  --gold-hi:#FFE69A;
+  --wood:#6E442C;
+  --wood-dark:#3C261D;
+  --white:#F7FBFF;
+  --ease-out:cubic-bezier(.23,1,.32,1);
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;min-height:100%;background:var(--sky-2);color:var(--paper-ink);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{min-height:100dvh;overflow:hidden}
+button,a{font:inherit;color:inherit}
+a{text-decoration:none;-webkit-tap-highlight-color:transparent}
+button{-webkit-tap-highlight-color:transparent}
+
+.app{
+  position:relative;
+  width:min(100%,680px);
+  height:100dvh;
+  margin:0 auto;
+  overflow:hidden;
+  display:grid;
+  grid-template-rows:auto minmax(0,1fr) auto;
+  gap:10px;
+  padding:max(8px,env(safe-area-inset-top)) 14px max(8px,env(safe-area-inset-bottom));
+  isolation:isolate;
+}
+.app::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-4;
+  background:
+    linear-gradient(to bottom,rgba(255,255,255,.12),transparent 22%),
+    linear-gradient(to bottom,var(--sky) 0%,#4AADEB 38%,#71C3EE 70%,#8AD0EF 100%);
+}
+.app::after{
+  content:"";
+  position:absolute;
+  left:-10%;
+  right:-10%;
+  bottom:0;
+  height:34%;
+  z-index:-3;
+  opacity:.20;
+  background:
+    linear-gradient(135deg,transparent 0 33%,#0C579D 34% 50%,transparent 51%) 0 0/96px 56px repeat-x,
+    linear-gradient(45deg,transparent 0 34%,#0A427E 35% 54%,transparent 55%) 38px 38px/118px 66px repeat-x,
+    linear-gradient(to top,#0A3B72 0 24%,transparent 25%);
+  image-rendering:pixelated;
+}
+.pixel-cloud{
+  position:absolute;
+  width:76px;height:18px;
+  background:rgba(255,255,255,.28);
+  box-shadow:16px -10px 0 rgba(255,255,255,.22),38px -5px 0 rgba(255,255,255,.25),54px 3px 0 rgba(255,255,255,.18);
+  z-index:-2;
+  opacity:.55;
+}
+.pixel-cloud.one{top:15%;left:-20px}
+.pixel-cloud.two{top:29%;right:-26px;transform:scale(.72)}
+
+header{
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  min-height:108px;
+  padding-top:4px;
+}
+.logo{
+  text-align:center;
+  font-weight:950;
+  line-height:.82;
+  letter-spacing:-.055em;
+  font-size:clamp(29px,7.7vw,43px);
+  color:var(--white);
+  text-shadow:
+    0 3px 0 var(--blue-deep),
+    2px 0 0 var(--blue-deep),
+    -2px 0 0 var(--blue-deep),
+    0 -2px 0 var(--blue-deep),
+    3px 4px 0 rgba(8,35,78,.38);
+}
+.logo span{display:block}
+.logo .game{
+  color:#FFD45F;
+  text-shadow:
+    0 3px 0 #8E5A17,
+    2px 0 0 #8E5A17,
+    -2px 0 0 #8E5A17,
+    0 -2px 0 #8E5A17,
+    3px 4px 0 rgba(8,35,78,.38);
+}
+.logo::after{
+  content:"";
+  display:block;
+  width:74px;
+  height:4px;
+  margin:11px auto 0;
+  background:var(--gold);
+  box-shadow:-8px 0 0 var(--blue-deep),8px 0 0 var(--blue-deep),0 3px 0 rgba(8,35,78,.35);
+}
+.tag{
+  margin-top:10px;
+  color:rgba(255,255,255,.88);
+  font-size:10px;
+  font-weight:850;
+  letter-spacing:.16em;
+  text-shadow:0 2px 0 rgba(11,45,89,.4);
+}
+.brand{text-align:center}
+.lang-toggle{
+  position:absolute;
+  right:0;
+  top:2px;
+  display:flex;
+  align-items:center;
+  padding:3px;
+  border:2px solid rgba(255,255,255,.8);
+  background:rgba(13,59,120,.50);
+  box-shadow:0 3px 0 rgba(5,31,71,.35);
+}
+.lang-btn{
+  border:0;
+  background:transparent;
+  color:rgba(255,255,255,.72);
+  font-size:10px;
+  font-weight:900;
+  padding:5px 7px;
+  cursor:pointer;
+}
+.lang-btn.active{background:var(--paper);color:var(--blue-deep)}
+
+.viewport{position:relative;min-height:0}
+.screen{height:100%;display:grid;grid-template-rows:minmax(0,1fr) auto;gap:14px}
+#questionScreen{display:none}
+.stage{display:flex;align-items:flex-start;justify-content:center;min-height:0;padding-top:2px}
+
+.card{
+  --corner:14px;
+  width:min(100%,560px);
+  min-height:30dvh;
+  max-height:37dvh;
+  padding:clamp(27px,6vw,40px) clamp(20px,5vw,34px) clamp(32px,7vw,44px);
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  background:
+    linear-gradient(90deg,rgba(231,179,72,.10) 1px,transparent 1px) 0 0/12px 12px,
+    linear-gradient(rgba(231,179,72,.08) 1px,transparent 1px) 0 0/12px 12px,
+    var(--paper);
+  border:4px solid var(--blue-deep);
+  outline:3px solid var(--cream);
+  box-shadow:
+    0 0 0 6px var(--gold),
+    0 0 0 9px var(--blue-deep),
+    0 12px 0 rgba(7,47,93,.22);
+  clip-path:polygon(12px 0,calc(100% - 12px) 0,calc(100% - 12px) 4px,100% 4px,100% calc(100% - 12px),calc(100% - 4px) calc(100% - 12px),calc(100% - 4px) 100%,12px 100%,12px calc(100% - 4px),0 calc(100% - 4px),0 12px,4px 12px,4px 4px,12px 4px);
+  will-change:transform,opacity;
+}
+.card::before,.card::after{
+  content:"";
+  position:absolute;
+  width:9px;height:9px;
+  background:var(--gold);
+  box-shadow:0 0 0 2px var(--blue-deep);
+}
+.card::before{top:9px;left:9px}
+.card::after{right:9px;bottom:9px}
+.question{
+  max-width:14em;
+  font-size:clamp(23px,5.8vw,36px);
+  line-height:1.40;
+  font-weight:850;
+  letter-spacing:-.035em;
+  color:var(--paper-ink);
+  text-wrap:balance;
+}
+.startText{
+  max-width:9em;
+  font-size:clamp(34px,8.8vw,52px);
+  line-height:1.22;
+  letter-spacing:-.05em;
+}
+.startText .copy-line{display:block}
+.startText.en{max-width:10.5em;font-size:clamp(31px,8vw,47px);line-height:1.13;letter-spacing:-.045em}
+.question.en{max-width:16em;letter-spacing:-.025em}
+.counter{
+  position:absolute;
+  right:15px;
+  bottom:13px;
+  min-width:58px;
+  padding:4px 7px;
+  border:2px solid var(--blue-deep);
+  background:#E8F4FF;
+  color:var(--blue-deep);
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.04em;
+}
+
+.controls{
+  width:min(100%,560px);
+  margin-inline:auto;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1.18fr);
+  gap:12px;
+}
+.start-controls{grid-template-columns:1fr}
+.nav{
+  position:relative;
+  min-height:60px;
+  border:3px solid #EAF7FF;
+  outline:3px solid var(--blue-deep);
+  background:linear-gradient(#258BE8,#176CC6);
+  color:#fff;
+  font-weight:900;
+  font-size:16px;
+  letter-spacing:-.01em;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:10px 13px;
+  cursor:pointer;
+  box-shadow:
+    inset 0 3px 0 rgba(255,255,255,.24),
+    0 5px 0 #073467,
+    0 8px 14px rgba(4,45,96,.18);
+  transition:transform 85ms var(--ease-out),filter 85ms ease,box-shadow 85ms ease,border-color 85ms ease;
+  clip-path:polygon(8px 0,calc(100% - 8px) 0,calc(100% - 8px) 3px,100% 3px,100% calc(100% - 8px),calc(100% - 3px) calc(100% - 8px),calc(100% - 3px) 100%,8px 100%,8px calc(100% - 3px),0 calc(100% - 3px),0 8px,3px 8px,3px 3px,8px 3px);
+}
+.nav.next{background:linear-gradient(#2D94EE,#126AC9)}
+.start-controls .nav{
+  min-height:68px;
+  max-width:430px;
+  width:100%;
+  margin:auto;
+  border-color:var(--gold-hi);
+  outline-color:#8A5C17;
+  background:linear-gradient(#349AF0,#176FD0);
+  box-shadow:
+    inset 0 3px 0 rgba(255,255,255,.28),
+    0 0 0 3px var(--gold),
+    0 6px 0 #765018,
+    0 10px 18px rgba(4,45,96,.22);
+  font-size:19px;
+}
+.nav::before{
+  content:"";
+  position:absolute;
+  left:7px;
+  top:50%;
+  width:0;height:0;
+  border-top:6px solid transparent;
+  border-bottom:6px solid transparent;
+  border-left:8px solid transparent;
+  transform:translateY(-50%);
+  opacity:0;
+}
+.nav:hover::before,.nav:focus-visible::before,.nav.tap-animate::before{
+  border-left-color:var(--gold-hi);
+  opacity:1;
+}
+.nav:active,.nav.tap-animate{
+  transform:translateY(3px) scale(.985);
+  filter:brightness(.94);
+  box-shadow:
+    inset 0 3px 0 rgba(255,255,255,.18),
+    0 2px 0 #073467,
+    0 4px 8px rgba(4,45,96,.14);
+}
+.start-controls .nav:active,.start-controls .nav.tap-animate{
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,.18),
+    0 0 0 3px var(--gold),
+    0 2px 0 #765018,
+    0 5px 8px rgba(4,45,96,.15);
+}
+
+.ad-board{
+  width:min(344px,100%);
+  min-height:70px;
+  margin:0 auto;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:8px 10px;
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.04),transparent 16%,rgba(255,255,255,.04) 32%,transparent 50%,rgba(255,255,255,.035) 70%,transparent),
+    #795037;
+  border:4px solid var(--wood-dark);
+  outline:3px solid #B7804D;
+  box-shadow:0 5px 0 rgba(39,22,17,.42);
+  clip-path:polygon(8px 0,calc(100% - 8px) 0,calc(100% - 8px) 3px,100% 3px,100% calc(100% - 8px),calc(100% - 3px) calc(100% - 8px),calc(100% - 3px) 100%,8px 100%,8px calc(100% - 3px),0 calc(100% - 3px),0 8px,3px 8px,3px 3px,8px 3px);
+}
+.ad{
+  width:320px;
+  max-width:100%;
+  min-height:50px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  background:rgba(255,248,220,.10);
+}
+.ad-board::before,.ad-board::after{
+  content:"";
+  position:absolute;
+  top:6px;
+  width:5px;height:5px;
+  background:#D6A861;
+  box-shadow:0 0 0 2px #4D2F20;
+  pointer-events:none;
+}
+.ad-board::before{left:7px}.ad-board::after{right:7px}
+
+.card.anim-out-next{animation:tgtOutNext 150ms cubic-bezier(.4,0,1,1) both}
+.card.anim-in-next{animation:tgtInNext 240ms var(--ease-out) both}
+.card.anim-out-prev{animation:tgtOutPrev 150ms cubic-bezier(.4,0,1,1) both}
+.card.anim-in-prev{animation:tgtInPrev 240ms var(--ease-out) both}
+@keyframes tgtOutNext{to{transform:translateX(-22px) scale(.985);opacity:0}}
+@keyframes tgtInNext{from{transform:translateX(28px) scale(.985);opacity:0}to{transform:none;opacity:1}}
+@keyframes tgtOutPrev{to{transform:translateX(22px) scale(.985);opacity:0}}
+@keyframes tgtInPrev{from{transform:translateX(-28px) scale(.985);opacity:0}to{transform:none;opacity:1}}
+
+@media(hover:hover) and (pointer:fine){
+  .nav:hover{filter:brightness(1.06)}
+}
+@media(max-height:760px){
+  .app{gap:7px;padding-top:max(6px,env(safe-area-inset-top));padding-bottom:max(6px,env(safe-area-inset-bottom))}
+  header{min-height:94px}
+  .logo{font-size:clamp(26px,6.9vw,37px)}
+  .logo::after{margin-top:8px}
+  .tag{margin-top:7px;font-size:9px}
+  .screen{gap:10px}
+  .card{min-height:27dvh;max-height:33dvh;padding:22px 18px 30px}
+  .question{font-size:clamp(21px,5.4vw,31px)}
+  .startText{font-size:clamp(31px,8vw,44px)}
+  .nav{min-height:54px;font-size:15px}
+  .start-controls .nav{min-height:60px;font-size:18px}
+  .ad-board{min-height:64px;padding:6px 8px}
+}
+@media(max-height:650px){
+  header{min-height:78px}
+  .tag{display:none}
+  .logo{font-size:clamp(24px,6.4vw,33px)}
+  .logo::after{margin-top:6px;height:3px}
+  .screen{gap:8px}
+  .card{min-height:24dvh;max-height:29dvh;padding:18px 16px 27px}
+  .question{font-size:clamp(19px,5vw,28px)}
+  .startText{font-size:clamp(28px,7vw,39px)}
+  .controls{gap:9px}
+  .nav{min-height:49px;font-size:14px}
+  .start-controls .nav{min-height:54px;font-size:17px}
+  .ad-board{min-height:60px}
+}
+@media(max-width:390px){
+  .app{padding-left:12px;padding-right:12px}
+  .lang-toggle{right:-2px}
+  .lang-btn{padding:4px 6px}
+  .controls{gap:9px}
+  .nav{font-size:14px;padding-inline:9px}
+}
+@media(prefers-reduced-motion:reduce){
+  .card.anim-out-next,.card.anim-in-next,.card.anim-out-prev,.card.anim-in-prev{animation:none}
+  .nav{transition:filter 85ms ease,box-shadow 85ms ease}
+}
 </style>
 </head>
-<body>
-<div class="shell">
-<header>
-<div class="logo"><span>TALK</span><span class="game">GAME</span><span>TALK</span></div><div class="tag">1 TAP, 1 QUESTION, MORE TALK.</div>
-<div class="lang-toggle" role="group" aria-label="Language"><button class="lang-btn active" id="jpBtn" type="button">JP</button><button class="lang-btn" id="enBtn" type="button">EN</button></div>
-</header>
-<div class="viewport">
-<section class="screen" id="startScreen"><main class="stage"><article class="card"><div class="question startText" id="startText"></div></article></main><nav class="controls start-controls"><a class="nav next" id="startBtn" href="#q1"></a></nav></section>
-<section class="screen question-screen" id="questionScreen"><main class="stage"><article class="card" id="questionCard"><div class="question" id="questionText"></div><div class="counter" id="counter"></div></article></main><nav class="controls"><a class="nav" id="prevBtn" href="#start"></a><a class="nav next" id="nextBtn" href="#q2"></a></nav></section>
+<body data-version="Ver02-01">
+<div class="app" id="app">
+  <div class="pixel-cloud one" aria-hidden="true"></div>
+  <div class="pixel-cloud two" aria-hidden="true"></div>
+  <header>
+    <div class="brand">
+      <div class="logo"><span>TALK</span><span class="game">GAME</span><span>TALK</span></div>
+      <div class="tag">1 TAP, 1 QUESTION, MORE TALK.</div>
+    </div>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button class="lang-btn active" id="jpBtn" type="button">JP</button>
+      <button class="lang-btn" id="enBtn" type="button">EN</button>
+    </div>
+  </header>
+
+  <div class="viewport">
+    <section class="screen" id="startScreen">
+      <main class="stage">
+        <article class="card">
+          <div class="question startText" id="startText"></div>
+        </article>
+      </main>
+      <nav class="controls start-controls">
+        <a class="nav next" id="startBtn" href="#q1"></a>
+      </nav>
+    </section>
+
+    <section class="screen question-screen" id="questionScreen">
+      <main class="stage">
+        <article class="card" id="questionCard" aria-live="polite">
+          <div class="question" id="questionText"></div>
+          <div class="counter" id="counter"></div>
+        </article>
+      </main>
+      <nav class="controls">
+        <a class="nav" id="prevBtn" href="#start"></a>
+        <a class="nav next" id="nextBtn" href="#q2"></a>
+      </nav>
+    </section>
+  </div>
+
+  <div class="ad-board">
+    <div class="ad" aria-label="広告">
+      <script type="text/javascript" src="https://j.zucks.net.zimg.jp/j?f=737274"></script>
+    </div>
+  </div>
 </div>
-<div class="ad" aria-label="広告"><script type="text/javascript" src="https://j.zucks.net.zimg.jp/j?f=737274"></script></div>
-</div>
+
 <script>
 (()=>{
-const ja=["初めて徹夜したゲームは？","子どもの頃、一番遊んだゲームは？","初めて自分で買ったゲームは？","一番長く遊んだゲームは？","友達と一番盛り上がったゲームは？","セーブせずに進んで後悔した思い出は？","一番印象に残っているNPCは？","一番達成感があったゲームは？","一番緊張したボス戦は？","期待しすぎて合わなかったゲームは？","戦闘だけで何時間でも遊べると思ったゲームは？","ゲームのために予定をずらしたことはある？","攻略情報を見ずに遊んでよかったと思うゲームは？","今までで一番『自分、ゲーム好きだな』と思った瞬間は？","ゲームのアイテムを1つだけ現実に持ち込めるなら何がいい？","ゲームの職業を1つ選んで現実で働くなら何を選ぶ？","ゲームがきっかけで始めた趣味はある？","ゲームオーバーのペナルティは重い方がいい？","気づいたら朝になっていたゲームは？","ゲームで本気で誰かに感謝したことはある？","育成が一番楽しかったゲームは？","収集が止まらなくなったゲームは？","今まで一番泣けたゲームは？","無人島にゲームを1本だけ持っていけるなら、どんなゲーム？","一番笑ったゲームの思い出は？","難易度は高いほど面白い？","キャラメイクと固定主人公、どっちが好き？","探索しているだけで楽しかったゲームは？","今までで一番操作していて気持ちよかったゲームは？","オンライン要素はなくてもいい？","記憶を消して、もう一度遊びたいゲームは？","親に隠れて遊んだゲームの思い出は？","ゲームの発売延期はどこまで許せる？","一番しょうもない理由でやめたゲームは？","最後まで嫌いになれなかった敵は？","ゲーム中に思わず声が出た瞬間は？","クリア後のやり込みは必要？","自分がラスボスになるなら、どんな能力を持ちたい？","自力で見つけたとき嬉しかった隠し要素は？","主人公は無口とよく喋るタイプ、どっちが好き？","クリアした瞬間に放心したゲームは？","一番好きだったゲームの世界は？","逆に、絶対に住みたくないゲーム世界は？","途中で投げたことを少し後悔しているゲームは？","一生にあと3本しかゲームを遊べないなら、どう選ぶ？","一番悔しかったゲームの思い出は？","ロード時間とグラフィック、どっちを優先してほしい？","積んだまま何年も気になっているゲームは？","リメイクで内容を大きく変えるのはアリ？","今、一番遊びたいのに時間が足りないゲームは？","自分の人生の一時期と強く結びついているゲームは？","対人戦と協力プレイ、どっちが好き？","みんな評価しているけど、自分には合わなかったゲームは？","寄り道ばかりして本編が進まなかったゲームは？","ボイスはフルボイスの方がいい？","一番好きだったゲームの街や拠点は？","一番守りたくなったキャラクターは？","エンディングが忘れられないゲームは？","それでもゲームを続けている理由は？","取り返しのつかない要素はアリ？ナシ？","チュートリアルは丁寧な方がいい？それとも放っておいてほしい？","人生を変えたゲームは？","子どもの頃と今で評価が変わったゲームは？","昔の友達を思い出すゲームは？","攻略情報を見るのはアリ？ナシ？","説明書を読まずに始めて困ったゲームは？","一番感情移入した主人公はどんなタイプ？","一番好きだった悪役は？","一番意味不明だったゲームの思い出は？","ゲームはクリアまで遊ばなくてもいい？","音楽を聴くだけで場面が浮かぶゲームは？","大切な人に一度は遊んでほしいゲームは？","ゲームから教わったことはある？","一番好きだった相棒キャラは？","自分がゲームの主人公になるなら、どんなジャンルがいい？","実績やトロフィーは気にする？","今でもタイトルを聞くだけで懐かしくなるゲームは？","逆に、評価は低いけど自分は大好きなゲームは？","オープンワールドと一本道、どっちが好き？","ゲーム内のミニゲームに本編以上にハマったことはある？","ゲームを通して仲良くなった人はいる？","家族との思い出があるゲームは？","人にはちょっと言いづらいくらいハマったゲームは？","一番許せなかった裏切りキャラは？","住めるなら、どんなゲーム世界に住みたい？","ゲームにファストトラベルは必要？","買って後悔したゲームはある？","10年後もゲームを遊んでいると思う？","ゲームをやめようと思った時期はある？","初見では絶対わからないと思った仕掛けは？","一番笑えるバグに遭遇したことは？","一度だけゲームの能力を現実で使えるなら、どんな能力がいい？","攻略情報を見ればよかったと思ったゲームは？","一番しょうもない理由でキレたゲームは？","ストーリー重視とゲーム性重視、どっち？","ゲームは1人で遊ぶ方が好き？誰かと遊ぶ方が好き？","コントローラーを強く握りすぎたことはある？","一生ひとつのジャンルしか遊べないなら何を選ぶ？","今の自分だからこそ、もう一度遊びたいゲームは？","一番怖かったゲームは？"];
-const en=["What game first kept you up all night?","What game did you play the most as a kid?","What was the first game you bought with your own money?","What game have you spent the most time playing?","What game did you have the most fun playing with friends?","When did you regret pushing on without saving?","Which NPC has stuck with you the most?","What game gave you the biggest sense of accomplishment?","What was your most nerve-racking boss fight?","What game didn't click with you after you got too hyped for it?","What game could you play for hours just for the combat?","Have you ever changed your plans just to play a game?","What game are you glad you played without looking anything up?","When did you most think, ‘Yeah, I really love games’?","If you could bring one game item into real life, what would it be?","If you had to work in real life as one game class, what would you choose?","Did a game ever inspire you to pick up a new hobby?","Should game-over penalties be harsh?","What game made you suddenly realize it was morning?","Have you ever felt genuinely grateful to someone because of a game?","What game had the most fun character progression?","What game made collecting things impossible to stop?","What game made you cry the most?","If you could take one game to a desert island, what kind would it be?","What's your funniest gaming memory?","Does higher difficulty make a game more fun?","Do you prefer creating your own character or playing a fixed protagonist?","What game was fun just to explore?","What game simply felt the best to control?","Are you fine with games having no online features?","What game would you erase from your memory just to experience again?","What game did you secretly play when your parents weren't around?","How much of a release delay are you willing to forgive?","What's the silliest reason you've ever quit a game?","Which enemy could you never bring yourself to hate?","What gaming moment actually made you shout out loud?","Do games need post-game content?","If you were a final boss, what power would you want?","What hidden secret felt amazing to discover on your own?","Do you prefer a silent protagonist or one who talks a lot?","What game left you sitting there stunned after the credits?","What's your favorite game world?","What game world would you absolutely never want to live in?","What game do you slightly regret giving up on?","If you could only play three more games in your life, how would you choose them?","What's your most frustrating gaming memory?","Would you rather have shorter load times or better graphics?","What game has been sitting in your backlog for years but still nags at you?","Is it okay for a remake to change the original dramatically?","What game do you most want to play right now but just don't have time for?","What game is strongly tied to a particular time in your life?","Do you prefer PvP or co-op?","What highly praised game just wasn't for you?","What game had you doing so many side activities that you barely advanced the story?","Do you prefer games to be fully voiced?","What's your favorite town or home base in a game?","Which character made you want to protect them the most?","What game ending has stayed with you?","Why do you still play games?","Are permanently missable things in games okay or not?","Do you want a thorough tutorial, or would you rather be left to figure things out?","What game changed your life?","What game do you see differently now than you did as a kid?","What game reminds you of an old friend?","Is looking up guides okay, or do you avoid them?","What game got you into trouble because you skipped the manual?","What kind of protagonist have you related to the most?","Who's your favorite game villain?","What's your most bizarre gaming memory?","Is it okay to stop playing a game without finishing it?","What game has music that instantly brings scenes back to you?","What game would you want someone important to you to play at least once?","Has a game ever taught you something that stuck with you?","Who's your favorite companion character?","If you became a game protagonist, what genre would you want to be in?","Do you care about achievements or trophies?","What game title alone instantly makes you nostalgic?","What poorly rated game do you personally love?","Do you prefer open worlds or linear games?","Have you ever gotten more hooked on a minigame than the main game?","Have you ever become friends with someone through gaming?","What game is tied to a family memory for you?","What game did you get so obsessed with that it's a little embarrassing to admit?","Which character's betrayal made you the angriest?","If you could live in any game world, what kind would you choose?","Do games need fast travel?","Have you ever regretted buying a game?","Do you think you'll still be playing games ten years from now?","Was there ever a time you thought about giving up gaming?","What puzzle or secret made you think, ‘No one could figure this out blind’?","What's the funniest bug you've ever encountered?","If you could use one game ability in real life just once, what would it be?","What game made you wish you'd looked up a guide sooner?","What's the dumbest reason you've ever gotten mad at a game?","Which matters more to you: story or gameplay?","Do you prefer gaming alone or with other people?","Have you ever gripped your controller way too hard?","If you could play only one genre for the rest of your life, what would it be?","What game would you like to revisit specifically because of who you are now?","What's the scariest game you've ever played?"];
-const ui={ja:{start:['ゲームの','思い出から、','会話が','はじまる。'],startBtn:'お題を出す →',first:'← 最初へ',prev:'← 前のお題',next:'次のお題 →',again:'もう一周 →'},en:{start:['GAME MEMORIES','START','CONVERSATIONS.'],startBtn:'GET A QUESTION →',first:'← START',prev:'← PREVIOUS',next:'NEXT QUESTION →',again:'ONE MORE ROUND →'}};
-const start=document.getElementById('startScreen'),screen=document.getElementById('questionScreen'),card=document.getElementById('questionCard'),text=document.getElementById('questionText'),counter=document.getElementById('counter'),startText=document.getElementById('startText'),startBtn=document.getElementById('startBtn'),prev=document.getElementById('prevBtn'),next=document.getElementById('nextBtn'),jpBtn=document.getElementById('jpBtn'),enBtn=document.getElementById('enBtn');
-let current=0,moving=false,lang=localStorage.getItem('tgt-lang')==='en'?'en':'ja';
-const setMode=q=>{start.style.display=q?'none':'grid';screen.style.display=q?'grid':'none'};
-const renderStart=()=>{const u=ui[lang];startText.innerHTML=u.start.map(x=>`<span class="copy-line">${x}</span>`).join('');startText.classList.toggle('en',lang==='en');startText.setAttribute('aria-label',u.start.join(' '));startBtn.textContent=u.startBtn};
-const render=n=>{current=Math.max(1,Math.min(100,n));const u=ui[lang];text.textContent=(lang==='ja'?ja:en)[current-1];text.classList.toggle('en',lang==='en');counter.textContent=`${current} / 100`;prev.textContent=current===1?u.first:u.prev;prev.href=current===1?'#start':`#q${current-1}`;next.textContent=current===100?u.again:u.next;next.href=current===100?'#q1':`#q${current+1}`;setMode(true)};
-const applyLang=l=>{lang=l;localStorage.setItem('tgt-lang',l);document.documentElement.lang=l;document.querySelector('.ad').setAttribute('aria-label',l==='ja'?'広告':'Advertisement');jpBtn.classList.toggle('active',l==='ja');enBtn.classList.toggle('active',l==='en');renderStart();if(location.hash.match(/^#q\d+$/))render(current||Number(location.hash.slice(2)));};
-const fromHash=()=>{const m=location.hash.match(/^#q(\d+)$/);if(m)render(Number(m[1]));else{renderStart();setMode(false)}};
-const animateTo=(target,dir)=>{if(moving)return;moving=true;const outClass=dir==='next'?'anim-out-next':'anim-out-prev',inClass=dir==='next'?'anim-in-next':'anim-in-prev';if(matchMedia('(prefers-reduced-motion: reduce)').matches){location.hash=target;moving=false;return}let outFinished=false,inFinished=false,outTimer=null,inTimer=null;const done=()=>{if(inFinished)return;inFinished=true;clearTimeout(inTimer);card.classList.remove(inClass);moving=false};const finish=()=>{if(outFinished)return;outFinished=true;clearTimeout(outTimer);card.classList.remove(outClass);location.hash=target;requestAnimationFrame(()=>{card.classList.remove('anim-in-next','anim-in-prev');void card.offsetWidth;card.classList.add(inClass);card.addEventListener('animationend',done,{once:true});inTimer=setTimeout(done,320)})};card.classList.add(outClass);card.addEventListener('animationend',finish,{once:true});outTimer=setTimeout(finish,210)};
-const tapThen=(button,action)=>{button.classList.remove('tap-animate');void button.offsetWidth;button.classList.add('tap-animate');setTimeout(()=>{button.classList.remove('tap-animate');action()},110)};
-[startBtn,prev,next].forEach(button=>{const press=()=>button.classList.add('tap-animate'),release=()=>setTimeout(()=>button.classList.remove('tap-animate'),70);button.addEventListener('pointerdown',press,{passive:true});button.addEventListener('pointerup',release,{passive:true});button.addEventListener('pointercancel',release,{passive:true})});
-startBtn.addEventListener('click',e=>{e.preventDefault();tapThen(startBtn,()=>location.hash='#q1')});prev.addEventListener('click',e=>{e.preventDefault();tapThen(prev,()=>{if(current===1){location.hash='#start';return}animateTo(`#q${current-1}`,'prev')})});next.addEventListener('click',e=>{e.preventDefault();tapThen(next,()=>animateTo(current===100?'#q1':`#q${current+1}`,'next'))});jpBtn.addEventListener('click',()=>applyLang('ja'));enBtn.addEventListener('click',()=>applyLang('en'));addEventListener('hashchange',fromHash);applyLang(lang);fromHash();
+const VERSION='Ver02-01';
+const ja=["初めて徹夜したゲームは？", "子どもの頃、一番遊んだゲームは？", "初めて自分で買ったゲームは？", "一番長く遊んだゲームは？", "友達と一番盛り上がったゲームは？", "セーブせずに進んで後悔した思い出は？", "一番印象に残っているNPCは？", "一番達成感があったゲームは？", "一番緊張したボス戦は？", "期待しすぎて合わなかったゲームは？", "戦闘だけで何時間でも遊べると思ったゲームは？", "ゲームのために予定をずらしたことはある？", "攻略情報を見ずに遊んでよかったと思うゲームは？", "今までで一番『自分、ゲーム好きだな』と思った瞬間は？", "ゲームのアイテムを1つだけ現実に持ち込めるなら何がいい？", "ゲームの職業を1つ選んで現実で働くなら何を選ぶ？", "ゲームがきっかけで始めた趣味はある？", "ゲームオーバーのペナルティは重い方がいい？", "気づいたら朝になっていたゲームは？", "ゲームで本気で誰かに感謝したことはある？", "育成が一番楽しかったゲームは？", "収集が止まらなくなったゲームは？", "今まで一番泣けたゲームは？", "無人島にゲームを1本だけ持っていけるなら、どんなゲーム？", "一番笑ったゲームの思い出は？", "難易度は高いほど面白い？", "キャラメイクと固定主人公、どっちが好き？", "探索しているだけで楽しかったゲームは？", "今までで一番操作していて気持ちよかったゲームは？", "オンライン要素はなくてもいい？", "記憶を消して、もう一度遊びたいゲームは？", "親に隠れて遊んだゲームの思い出は？", "ゲームの発売延期はどこまで許せる？", "一番しょうもない理由でやめたゲームは？", "最後まで嫌いになれなかった敵は？", "ゲーム中に思わず声が出た瞬間は？", "クリア後のやり込みは必要？", "自分がラスボスになるなら、どんな能力を持ちたい？", "自力で見つけたとき嬉しかった隠し要素は？", "主人公は無口とよく喋るタイプ、どっちが好き？", "クリアした瞬間に放心したゲームは？", "一番好きだったゲームの世界は？", "逆に、絶対に住みたくないゲーム世界は？", "途中で投げたことを少し後悔しているゲームは？", "一生にあと3本しかゲームを遊べないなら、どう選ぶ？", "一番悔しかったゲームの思い出は？", "ロード時間とグラフィック、どっちを優先してほしい？", "積んだまま何年も気になっているゲームは？", "リメイクで内容を大きく変えるのはアリ？", "今、一番遊びたいのに時間が足りないゲームは？", "自分の人生の一時期と強く結びついているゲームは？", "対人戦と協力プレイ、どっちが好き？", "みんな評価しているけど、自分には合わなかったゲームは？", "寄り道ばかりして本編が進まなかったゲームは？", "ボイスはフルボイスの方がいい？", "一番好きだったゲームの街や拠点は？", "一番守りたくなったキャラクターは？", "エンディングが忘れられないゲームは？", "それでもゲームを続けている理由は？", "取り返しのつかない要素はアリ？ナシ？", "チュートリアルは丁寧な方がいい？それとも放っておいてほしい？", "人生を変えたゲームは？", "子どもの頃と今で評価が変わったゲームは？", "昔の友達を思い出すゲームは？", "攻略情報を見るのはアリ？ナシ？", "説明書を読まずに始めて困ったゲームは？", "一番感情移入した主人公はどんなタイプ？", "一番好きだった悪役は？", "一番意味不明だったゲームの思い出は？", "ゲームはクリアまで遊ばなくてもいい？", "音楽を聴くだけで場面が浮かぶゲームは？", "大切な人に一度は遊んでほしいゲームは？", "ゲームから教わったことはある？", "一番好きだった相棒キャラは？", "自分がゲームの主人公になるなら、どんなジャンルがいい？", "実績やトロフィーは気にする？", "今でもタイトルを聞くだけで懐かしくなるゲームは？", "逆に、評価は低いけど自分は大好きなゲームは？", "オープンワールドと一本道、どっちが好き？", "ゲーム内のミニゲームに本編以上にハマったことはある？", "ゲームを通して仲良くなった人はいる？", "家族との思い出があるゲームは？", "人にはちょっと言いづらいくらいハマったゲームは？", "一番許せなかった裏切りキャラは？", "住めるなら、どんなゲーム世界に住みたい？", "ゲームにファストトラベルは必要？", "買って後悔したゲームはある？", "10年後もゲームを遊んでいると思う？", "ゲームをやめようと思った時期はある？", "初見では絶対わからないと思った仕掛けは？", "一番笑えるバグに遭遇したことは？", "一度だけゲームの能力を現実で使えるなら、どんな能力がいい？", "攻略情報を見ればよかったと思ったゲームは？", "一番しょうもない理由でキレたゲームは？", "ストーリー重視とゲーム性重視、どっち？", "ゲームは1人で遊ぶ方が好き？誰かと遊ぶ方が好き？", "コントローラーを強く握りすぎたことはある？", "一生ひとつのジャンルしか遊べないなら何を選ぶ？", "今の自分だからこそ、もう一度遊びたいゲームは？", "一番怖かったゲームは？"];
+const en=["What game first kept you up all night?", "What game did you play the most as a kid?", "What was the first game you bought with your own money?", "What game have you spent the most time playing?", "What game did you have the most fun playing with friends?", "When did you regret pushing on without saving?", "Which NPC has stuck with you the most?", "What game gave you the biggest sense of accomplishment?", "What was your most nerve-racking boss fight?", "What game didn't click with you after you got too hyped for it?", "What game could you play for hours just for the combat?", "Have you ever changed your plans just to play a game?", "What game are you glad you played without looking anything up?", "When did you most think, ‘Yeah, I really love games’?", "If you could bring one game item into real life, what would it be?", "If you had to work in real life as one game class, what would you choose?", "Did a game ever inspire you to pick up a new hobby?", "Should game-over penalties be harsh?", "What game made you suddenly realize it was morning?", "Have you ever felt genuinely grateful to someone because of a game?", "What game had the most fun character progression?", "What game made collecting things impossible to stop?", "What game made you cry the most?", "If you could take one game to a desert island, what kind would it be?", "What's your funniest gaming memory?", "Does higher difficulty make a game more fun?", "Do you prefer creating your own character or playing a fixed protagonist?", "What game was fun just to explore?", "What game simply felt the best to control?", "Are you fine with games having no online features?", "What game would you erase from your memory just to experience again?", "What game did you secretly play when your parents weren't around?", "How much of a release delay are you willing to forgive?", "What's the silliest reason you've ever quit a game?", "Which enemy could you never bring yourself to hate?", "What gaming moment actually made you shout out loud?", "Do games need post-game content?", "If you were a final boss, what power would you want?", "What hidden secret felt amazing to discover on your own?", "Do you prefer a silent protagonist or one who talks a lot?", "What game left you sitting there stunned after the credits?", "What's your favorite game world?", "What game world would you absolutely never want to live in?", "What game do you slightly regret giving up on?", "If you could only play three more games in your life, how would you choose them?", "What's your most frustrating gaming memory?", "Would you rather have shorter load times or better graphics?", "What game has been sitting in your backlog for years but still nags at you?", "Is it okay for a remake to change the original dramatically?", "What game do you most want to play right now but just don't have time for?", "What game is strongly tied to a particular time in your life?", "Do you prefer PvP or co-op?", "What highly praised game just wasn't for you?", "What game had you doing so many side activities that you barely advanced the story?", "Do you prefer games to be fully voiced?", "What's your favorite town or home base in a game?", "Which character made you want to protect them the most?", "What game ending has stayed with you?", "Why do you still play games?", "Are permanently missable things in games okay or not?", "Do you want a thorough tutorial, or would you rather be left to figure things out?", "What game changed your life?", "What game do you see differently now than you did as a kid?", "What game reminds you of an old friend?", "Is looking up guides okay, or do you avoid them?", "What game got you into trouble because you skipped the manual?", "What kind of protagonist have you related to the most?", "Who's your favorite game villain?", "What's your most bizarre gaming memory?", "Is it okay to stop playing a game without finishing it?", "What game has music that instantly brings scenes back to you?", "What game would you want someone important to you to play at least once?", "Has a game ever taught you something that stuck with you?", "Who's your favorite companion character?", "If you became a game protagonist, what genre would you want to be in?", "Do you care about achievements or trophies?", "What game title alone instantly makes you nostalgic?", "What poorly rated game do you personally love?", "Do you prefer open worlds or linear games?", "Have you ever gotten more hooked on a minigame than the main game?", "Have you ever become friends with someone through gaming?", "What game is tied to a family memory for you?", "What game did you get so obsessed with that it's a little embarrassing to admit?", "Which character's betrayal made you the angriest?", "If you could live in any game world, what kind would you choose?", "Do games need fast travel?", "Have you ever regretted buying a game?", "Do you think you'll still be playing games ten years from now?", "Was there ever a time you thought about giving up gaming?", "What puzzle or secret made you think, ‘No one could figure this out blind’?", "What's the funniest bug you've ever encountered?", "If you could use one game ability in real life just once, what would it be?", "What game made you wish you'd looked up a guide sooner?", "What's the dumbest reason you've ever gotten mad at a game?", "Which matters more to you: story or gameplay?", "Do you prefer gaming alone or with other people?", "Have you ever gripped your controller way too hard?", "If you could play only one genre for the rest of your life, what would it be?", "What game would you like to revisit specifically because of who you are now?", "What's the scariest game you've ever played?"];
+const ui={
+  ja:{
+    start:['ゲームの','思い出から、','会話が','はじまる。'],
+    startBtn:'お題を出す →',
+    first:'← 最初へ',
+    prev:'← 前のお題',
+    next:'次のお題 →',
+    again:'もう一周 →'
+  },
+  en:{
+    start:['GAME MEMORIES','START','CONVERSATIONS.'],
+    startBtn:'GET A QUESTION →',
+    first:'← START',
+    prev:'← PREVIOUS',
+    next:'NEXT QUESTION →',
+    again:'ONE MORE ROUND →'
+  }
+};
+
+const $=id=>document.getElementById(id);
+const startScreen=$('startScreen');
+const questionScreen=$('questionScreen');
+const startText=$('startText');
+const questionCard=$('questionCard');
+const questionText=$('questionText');
+const counter=$('counter');
+const startBtn=$('startBtn');
+const prevBtn=$('prevBtn');
+const nextBtn=$('nextBtn');
+const jpBtn=$('jpBtn');
+const enBtn=$('enBtn');
+
+let current=0;
+let moving=false;
+let lang=localStorage.getItem('tgt-lang')==='en'?'en':'ja';
+
+const questions=()=>lang==='ja'?ja:en;
+const esc=s=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+
+function renderStart(){
+  const t=ui[lang];
+  startText.className='question startText'+(lang==='en'?' en':'');
+  startText.innerHTML=t.start.map(line=>`<span class="copy-line">${esc(line)}</span>`).join('');
+  startBtn.textContent=t.startBtn;
+  startBtn.href='#q1';
+}
+
+function render(n){
+  const list=questions();
+  current=Math.min(list.length,Math.max(1,Number(n)||1));
+  questionText.className='question'+(lang==='en'?' en':'');
+  questionText.textContent=list[current-1];
+  counter.textContent=`${current} / ${list.length}`;
+  const t=ui[lang];
+  prevBtn.textContent=current===1?t.first:t.prev;
+  nextBtn.textContent=current===list.length?t.again:t.next;
+  prevBtn.href=current===1?'#start':`#q${current-1}`;
+  nextBtn.href=current===list.length?'#q1':`#q${current+1}`;
+}
+
+function showStart(){
+  current=0;
+  questionScreen.style.display='none';
+  startScreen.style.display='grid';
+}
+function showQuestion(n){
+  startScreen.style.display='none';
+  questionScreen.style.display='grid';
+  render(n);
+}
+function route(){
+  const m=location.hash.match(/^#q(\d+)$/);
+  if(m) showQuestion(Number(m[1]));
+  else showStart();
+}
+
+function animateCard(target,direction){
+  if(moving) return;
+  moving=true;
+  const outClass=direction==='prev'?'anim-out-prev':'anim-out-next';
+  const inClass=direction==='prev'?'anim-in-prev':'anim-in-next';
+  questionCard.classList.remove('anim-out-next','anim-in-next','anim-out-prev','anim-in-prev');
+  void questionCard.offsetWidth;
+  questionCard.classList.add(outClass);
+
+  let outFinished=false;
+  let outTimer;
+  const finishOut=()=>{
+    if(outFinished) return;
+    outFinished=true;
+    clearTimeout(outTimer);
+    questionCard.removeEventListener('animationend',finishOut);
+    questionCard.classList.remove(outClass);
+    render(target);
+    if(location.hash!==`#q${current}`) history.pushState(null,'',`#q${current}`);
+    void questionCard.offsetWidth;
+    questionCard.classList.add(inClass);
+
+    let inFinished=false;
+    let inTimer;
+    const finishIn=()=>{
+      if(inFinished) return;
+      inFinished=true;
+      clearTimeout(inTimer);
+      questionCard.removeEventListener('animationend',finishIn);
+      questionCard.classList.remove(inClass);
+      moving=false;
+    };
+    questionCard.addEventListener('animationend',finishIn,{once:true});
+    inTimer=setTimeout(finishIn,290);
+  };
+  questionCard.addEventListener('animationend',finishOut,{once:true});
+  outTimer=setTimeout(finishOut,190);
+}
+
+function tap(el){
+  el.classList.remove('tap-animate');
+  void el.offsetWidth;
+  el.classList.add('tap-animate');
+  setTimeout(()=>el.classList.remove('tap-animate'),150);
+}
+[startBtn,prevBtn,nextBtn].forEach(el=>{
+  el.addEventListener('pointerdown',()=>tap(el),{passive:true});
+});
+
+startBtn.addEventListener('click',e=>{
+  e.preventDefault();
+  history.pushState(null,'','#q1');
+  showQuestion(1);
+});
+prevBtn.addEventListener('click',e=>{
+  e.preventDefault();
+  if(moving) return;
+  if(current<=1){
+    history.pushState(null,'','#start');
+    showStart();
+  } else animateCard(current-1,'prev');
+});
+nextBtn.addEventListener('click',e=>{
+  e.preventDefault();
+  if(moving) return;
+  const list=questions();
+  const target=current>=list.length?1:current+1;
+  animateCard(target,'next');
+});
+
+function applyLang(l){
+  lang=l;
+  localStorage.setItem('tgt-lang',l);
+  document.documentElement.lang=l;
+  document.querySelector('.ad').setAttribute('aria-label',l==='ja'?'広告':'Advertisement');
+  jpBtn.classList.toggle('active',l==='ja');
+  enBtn.classList.toggle('active',l==='en');
+  renderStart();
+  const m=location.hash.match(/^#q(\d+)$/);
+  if(m) render(Number(m[1]));
+}
+jpBtn.addEventListener('click',()=>applyLang('ja'));
+enBtn.addEventListener('click',()=>applyLang('en'));
+window.addEventListener('popstate',route);
+window.addEventListener('hashchange',route);
+
+document.documentElement.dataset.version=VERSION;
+applyLang(lang);
+route();
 })();
 </script>
 </body>
