@@ -1,0 +1,101 @@
+name: Apply Ver02-02 patch
+
+on:
+  push:
+    paths:
+      - '.github/workflows/ver02-02.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Patch index.html to Ver02-02
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text()
+          def rep(old,new,label):
+              global s
+              if old not in s:
+                  raise SystemExit(f'missing expected block: {label}')
+              s=s.replace(old,new)
+          s=s.replace('Ver02-01','Ver02-02')
+          rep('''.app::after{
+  content:"";
+  position:absolute;
+  left:-10%;
+  right:-10%;
+  bottom:0;
+  height:34%;
+  z-index:-3;
+  opacity:.20;
+  background:
+    linear-gradient(135deg,transparent 0 33%,#0C579D 34% 50%,transparent 51%) 0 0/96px 56px repeat-x,
+    linear-gradient(45deg,transparent 0 34%,#0A427E 35% 54%,transparent 55%) 38px 38px/118px 66px repeat-x,
+    linear-gradient(to top,#0A3B72 0 24%,transparent 25%);
+  image-rendering:pixelated;
+}''','''.app::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:28%;
+  z-index:-3;
+  opacity:.24;
+  background:
+    linear-gradient(135deg,transparent 0 48%,#0E5D9F 49% 58%,transparent 59%) 0 calc(100% - 42px)/154px 86px repeat-x,
+    linear-gradient(225deg,transparent 0 48%,#0A4C86 49% 58%,transparent 59%) 76px calc(100% - 44px)/164px 82px repeat-x,
+    linear-gradient(to top,rgba(9,70,123,.62) 0 16%,transparent 16%),
+    linear-gradient(rgba(255,255,255,.14) 1px,transparent 1px) 0 100%/16px 16px repeat,
+    linear-gradient(90deg,rgba(255,255,255,.11) 1px,transparent 1px) 0 100%/16px 16px repeat;
+  image-rendering:pixelated;
+}''','background')
+          rep('''header{
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  min-height:108px;
+  padding-top:4px;
+}''','''header{
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  min-height:92px;
+  padding-top:6px;
+}''','header')
+          rep('''.tag{
+  margin-top:10px;
+  color:rgba(255,255,255,.88);
+  font-size:10px;
+  font-weight:850;
+  letter-spacing:.16em;
+  text-shadow:0 2px 0 rgba(11,45,89,.4);
+}''','.tag{display:none}','tag css')
+          rep('.screen{height:100%;display:grid;grid-template-rows:minmax(0,1fr) auto;gap:14px}','.screen{height:100%;display:grid;grid-template-rows:minmax(0,1fr) auto;gap:14px}\n#startScreen{grid-template-rows:auto auto;align-content:start;gap:10px}','start screen grid')
+          rep('.stage{display:flex;align-items:flex-start;justify-content:center;min-height:0;padding-top:2px}','.stage{display:flex;align-items:flex-start;justify-content:center;min-height:0;padding-top:2px}\n#startScreen .stage{padding-top:0}','start stage')
+          rep('.start-controls{grid-template-columns:1fr}','.start-controls{grid-template-columns:1fr;margin-top:-4px}','start controls')
+          rep('      <div class="tag">1 TAP, 1 QUESTION, MORE TALK.</div>\n','', 'tag html')
+          rep('  header{min-height:94px}','  header{min-height:84px}','760 header')
+          rep('  .tag{margin-top:7px;font-size:9px}\n','', '760 tag')
+          rep('  header{min-height:78px}\n  .tag{display:none}','  header{min-height:70px}','650 header/tag')
+          p.write_text(s)
+          PY
+      - name: Commit Ver02-02
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Implement Ver02-02 UI refinements"
+          git push origin main
