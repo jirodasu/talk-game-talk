@@ -1,11 +1,11 @@
 <!doctype html>
-<!-- TALK GAME TALK / Version: Ver02-02 -->
+<!-- TALK GAME TALK / Version: Ver02-03 -->
 <html lang="ja">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="theme-color" content="#2B86D9">
-<meta name="talk-game-talk-version" content="Ver02-02">
+<meta name="talk-game-talk-version" content="Ver02-03">
 <title>TALK GAME TALK</title>
 <style>
 :root{
@@ -61,14 +61,9 @@ button{-webkit-tap-highlight-color:transparent}
   bottom:0;
   height:28%;
   z-index:-3;
-  opacity:.24;
+  opacity:.18;
   background:
-    linear-gradient(135deg,transparent 0 48%,#0E5D9F 49% 58%,transparent 59%) 0 calc(100% - 42px)/154px 86px repeat-x,
-    linear-gradient(225deg,transparent 0 48%,#0A4C86 49% 58%,transparent 59%) 76px calc(100% - 44px)/164px 82px repeat-x,
-    linear-gradient(to top,rgba(9,70,123,.62) 0 16%,transparent 16%),
-    linear-gradient(rgba(255,255,255,.14) 1px,transparent 1px) 0 100%/16px 16px repeat,
-    linear-gradient(90deg,rgba(255,255,255,.11) 1px,transparent 1px) 0 100%/16px 16px repeat;
-  image-rendering:pixelated;
+    linear-gradient(to top,rgba(9,70,123,.20) 0 12%,transparent 46%);
 }
 .pixel-cloud{
   position:absolute;
@@ -386,7 +381,7 @@ header{
 }
 </style>
 </head>
-<body data-version="Ver02-02">
+<body data-version="Ver02-03">
 <div class="app" id="app">
   <div class="pixel-cloud one" aria-hidden="true"></div>
   <div class="pixel-cloud two" aria-hidden="true"></div>
@@ -435,7 +430,7 @@ header{
 
 <script>
 (()=>{
-const VERSION='Ver02-02';
+const VERSION='Ver02-03';
 const ja=["初めて徹夜したゲームは？", "子どもの頃、一番遊んだゲームは？", "初めて自分で買ったゲームは？", "一番長く遊んだゲームは？", "友達と一番盛り上がったゲームは？", "セーブせずに進んで後悔した思い出は？", "一番印象に残っているNPCは？", "一番達成感があったゲームは？", "一番緊張したボス戦は？", "期待しすぎて合わなかったゲームは？", "戦闘だけで何時間でも遊べると思ったゲームは？", "ゲームのために予定をずらしたことはある？", "攻略情報を見ずに遊んでよかったと思うゲームは？", "今までで一番『自分、ゲーム好きだな』と思った瞬間は？", "ゲームのアイテムを1つだけ現実に持ち込めるなら何がいい？", "ゲームの職業を1つ選んで現実で働くなら何を選ぶ？", "ゲームがきっかけで始めた趣味はある？", "ゲームオーバーのペナルティは重い方がいい？", "気づいたら朝になっていたゲームは？", "ゲームで本気で誰かに感謝したことはある？", "育成が一番楽しかったゲームは？", "収集が止まらなくなったゲームは？", "今まで一番泣けたゲームは？", "無人島にゲームを1本だけ持っていけるなら、どんなゲーム？", "一番笑ったゲームの思い出は？", "難易度は高いほど面白い？", "キャラメイクと固定主人公、どっちが好き？", "探索しているだけで楽しかったゲームは？", "今までで一番操作していて気持ちよかったゲームは？", "オンライン要素はなくてもいい？", "記憶を消して、もう一度遊びたいゲームは？", "親に隠れて遊んだゲームの思い出は？", "ゲームの発売延期はどこまで許せる？", "一番しょうもない理由でやめたゲームは？", "最後まで嫌いになれなかった敵は？", "ゲーム中に思わず声が出た瞬間は？", "クリア後のやり込みは必要？", "自分がラスボスになるなら、どんな能力を持ちたい？", "自力で見つけたとき嬉しかった隠し要素は？", "主人公は無口とよく喋るタイプ、どっちが好き？", "クリアした瞬間に放心したゲームは？", "一番好きだったゲームの世界は？", "逆に、絶対に住みたくないゲーム世界は？", "途中で投げたことを少し後悔しているゲームは？", "一生にあと3本しかゲームを遊べないなら、どう選ぶ？", "一番悔しかったゲームの思い出は？", "ロード時間とグラフィック、どっちを優先してほしい？", "積んだまま何年も気になっているゲームは？", "リメイクで内容を大きく変えるのはアリ？", "今、一番遊びたいのに時間が足りないゲームは？", "自分の人生の一時期と強く結びついているゲームは？", "対人戦と協力プレイ、どっちが好き？", "みんな評価しているけど、自分には合わなかったゲームは？", "寄り道ばかりして本編が進まなかったゲームは？", "ボイスはフルボイスの方がいい？", "一番好きだったゲームの街や拠点は？", "一番守りたくなったキャラクターは？", "エンディングが忘れられないゲームは？", "それでもゲームを続けている理由は？", "取り返しのつかない要素はアリ？ナシ？", "チュートリアルは丁寧な方がいい？それとも放っておいてほしい？", "人生を変えたゲームは？", "子どもの頃と今で評価が変わったゲームは？", "昔の友達を思い出すゲームは？", "攻略情報を見るのはアリ？ナシ？", "説明書を読まずに始めて困ったゲームは？", "一番感情移入した主人公はどんなタイプ？", "一番好きだった悪役は？", "一番意味不明だったゲームの思い出は？", "ゲームはクリアまで遊ばなくてもいい？", "音楽を聴くだけで場面が浮かぶゲームは？", "大切な人に一度は遊んでほしいゲームは？", "ゲームから教わったことはある？", "一番好きだった相棒キャラは？", "自分がゲームの主人公になるなら、どんなジャンルがいい？", "実績やトロフィーは気にする？", "今でもタイトルを聞くだけで懐かしくなるゲームは？", "逆に、評価は低いけど自分は大好きなゲームは？", "オープンワールドと一本道、どっちが好き？", "ゲーム内のミニゲームに本編以上にハマったことはある？", "ゲームを通して仲良くなった人はいる？", "家族との思い出があるゲームは？", "人にはちょっと言いづらいくらいハマったゲームは？", "一番許せなかった裏切りキャラは？", "住めるなら、どんなゲーム世界に住みたい？", "ゲームにファストトラベルは必要？", "買って後悔したゲームはある？", "10年後もゲームを遊んでいると思う？", "ゲームをやめようと思った時期はある？", "初見では絶対わからないと思った仕掛けは？", "一番笑えるバグに遭遇したことは？", "一度だけゲームの能力を現実で使えるなら、どんな能力がいい？", "攻略情報を見ればよかったと思ったゲームは？", "一番しょうもない理由でキレたゲームは？", "ストーリー重視とゲーム性重視、どっち？", "ゲームは1人で遊ぶ方が好き？誰かと遊ぶ方が好き？", "コントローラーを強く握りすぎたことはある？", "一生ひとつのジャンルしか遊べないなら何を選ぶ？", "今の自分だからこそ、もう一度遊びたいゲームは？", "一番怖かったゲームは？"];
 const en=["What game first kept you up all night?", "What game did you play the most as a kid?", "What was the first game you bought with your own money?", "What game have you spent the most time playing?", "What game did you have the most fun playing with friends?", "When did you regret pushing on without saving?", "Which NPC has stuck with you the most?", "What game gave you the biggest sense of accomplishment?", "What was your most nerve-racking boss fight?", "What game didn't click with you after you got too hyped for it?", "What game could you play for hours just for the combat?", "Have you ever changed your plans just to play a game?", "What game are you glad you played without looking anything up?", "When did you most think, ‘Yeah, I really love games’?", "If you could bring one game item into real life, what would it be?", "If you had to work in real life as one game class, what would you choose?", "Did a game ever inspire you to pick up a new hobby?", "Should game-over penalties be harsh?", "What game made you suddenly realize it was morning?", "Have you ever felt genuinely grateful to someone because of a game?", "What game had the most fun character progression?", "What game made collecting things impossible to stop?", "What game made you cry the most?", "If you could take one game to a desert island, what kind would it be?", "What's your funniest gaming memory?", "Does higher difficulty make a game more fun?", "Do you prefer creating your own character or playing a fixed protagonist?", "What game was fun just to explore?", "What game simply felt the best to control?", "Are you fine with games having no online features?", "What game would you erase from your memory just to experience again?", "What game did you secretly play when your parents weren't around?", "How much of a release delay are you willing to forgive?", "What's the silliest reason you've ever quit a game?", "Which enemy could you never bring yourself to hate?", "What gaming moment actually made you shout out loud?", "Do games need post-game content?", "If you were a final boss, what power would you want?", "What hidden secret felt amazing to discover on your own?", "Do you prefer a silent protagonist or one who talks a lot?", "What game left you sitting there stunned after the credits?", "What's your favorite game world?", "What game world would you absolutely never want to live in?", "What game do you slightly regret giving up on?", "If you could only play three more games in your life, how would you choose them?", "What's your most frustrating gaming memory?", "Would you rather have shorter load times or better graphics?", "What game has been sitting in your backlog for years but still nags at you?", "Is it okay for a remake to change the original dramatically?", "What game do you most want to play right now but just don't have time for?", "What game is strongly tied to a particular time in your life?", "Do you prefer PvP or co-op?", "What highly praised game just wasn't for you?", "What game had you doing so many side activities that you barely advanced the story?", "Do you prefer games to be fully voiced?", "What's your favorite town or home base in a game?", "Which character made you want to protect them the most?", "What game ending has stayed with you?", "Why do you still play games?", "Are permanently missable things in games okay or not?", "Do you want a thorough tutorial, or would you rather be left to figure things out?", "What game changed your life?", "What game do you see differently now than you did as a kid?", "What game reminds you of an old friend?", "Is looking up guides okay, or do you avoid them?", "What game got you into trouble because you skipped the manual?", "What kind of protagonist have you related to the most?", "Who's your favorite game villain?", "What's your most bizarre gaming memory?", "Is it okay to stop playing a game without finishing it?", "What game has music that instantly brings scenes back to you?", "What game would you want someone important to you to play at least once?", "Has a game ever taught you something that stuck with you?", "Who's your favorite companion character?", "If you became a game protagonist, what genre would you want to be in?", "Do you care about achievements or trophies?", "What game title alone instantly makes you nostalgic?", "What poorly rated game do you personally love?", "Do you prefer open worlds or linear games?", "Have you ever gotten more hooked on a minigame than the main game?", "Have you ever become friends with someone through gaming?", "What game is tied to a family memory for you?", "What game did you get so obsessed with that it's a little embarrassing to admit?", "Which character's betrayal made you the angriest?", "If you could live in any game world, what kind would you choose?", "Do games need fast travel?", "Have you ever regretted buying a game?", "Do you think you'll still be playing games ten years from now?", "Was there ever a time you thought about giving up gaming?", "What puzzle or secret made you think, ‘No one could figure this out blind’?", "What's the funniest bug you've ever encountered?", "If you could use one game ability in real life just once, what would it be?", "What game made you wish you'd looked up a guide sooner?", "What's the dumbest reason you've ever gotten mad at a game?", "Which matters more to you: story or gameplay?", "Do you prefer gaming alone or with other people?", "Have you ever gripped your controller way too hard?", "If you could play only one genre for the rest of your life, what would it be?", "What game would you like to revisit specifically because of who you are now?", "What's the scariest game you've ever played?"];
 const ui={
