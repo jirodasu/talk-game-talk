@@ -1,0 +1,53 @@
+name: Apply Ver02-02
+
+on:
+  push:
+    paths:
+      - '.github/workflows/apply-ver02-02.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Patch index.html
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          p = Path('index.html')
+          s = p.read_text()
+          if 'Ver02-01' not in s:
+              raise SystemExit('index.html is not Ver02-01')
+          s = s.replace('Ver02-01', 'Ver02-02')
+          new_bg = '.app::after{\n  content:"";\n  position:absolute;\n  left:0;\n  right:0;\n  bottom:0;\n  height:28%;\n  z-index:-3;\n  opacity:.24;\n  background:\n    linear-gradient(135deg,transparent 0 48%,#0E5D9F 49% 58%,transparent 59%) 0 calc(100% - 42px)/154px 86px repeat-x,\n    linear-gradient(225deg,transparent 0 48%,#0A4C86 49% 58%,transparent 59%) 76px calc(100% - 44px)/164px 82px repeat-x,\n    linear-gradient(to top,rgba(9,70,123,.62) 0 16%,transparent 16%),\n    linear-gradient(rgba(255,255,255,.14) 1px,transparent 1px) 0 100%/16px 16px repeat,\n    linear-gradient(90deg,rgba(255,255,255,.11) 1px,transparent 1px) 0 100%/16px 16px repeat;\n  image-rendering:pixelated;\n}'
+          s, n = re.subn(r'\.app::after\{.*?image-rendering:pixelated;\n\}', new_bg, s, count=1, flags=re.S)
+          if n != 1:
+              raise SystemExit('background block not found')
+          s = s.replace('  min-height:108px;\n  padding-top:4px;', '  min-height:92px;\n  padding-top:6px;', 1)
+          s, n = re.subn(r'\.tag\{\n  margin-top:10px;.*?text-shadow:0 2px 0 rgba\(11,45,89,\.4\);\n\}', '.tag{display:none}', s, count=1, flags=re.S)
+          if n != 1:
+              raise SystemExit('tag css not found')
+          s = s.replace('.screen{height:100%;display:grid;grid-template-rows:minmax(0,1fr) auto;gap:14px}', '.screen{height:100%;display:grid;grid-template-rows:minmax(0,1fr) auto;gap:14px}\n#startScreen{grid-template-rows:auto auto;align-content:start;gap:10px}', 1)
+          s = s.replace('.stage{display:flex;align-items:flex-start;justify-content:center;min-height:0;padding-top:2px}', '.stage{display:flex;align-items:flex-start;justify-content:center;min-height:0;padding-top:2px}\n#startScreen .stage{padding-top:0}', 1)
+          s = s.replace('.start-controls{grid-template-columns:1fr}', '.start-controls{grid-template-columns:1fr;margin-top:-4px}', 1)
+          s = s.replace('      <div class="tag">1 TAP, 1 QUESTION, MORE TALK.</div>\n', '', 1)
+          s = s.replace('  header{min-height:94px}', '  header{min-height:84px}', 1)
+          s = s.replace('  .tag{margin-top:7px;font-size:9px}\n', '', 1)
+          s = s.replace('  header{min-height:78px}\n  .tag{display:none}', '  header{min-height:70px}', 1)
+          p.write_text(s)
+          PY
+      - name: Commit Ver02-02
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Implement Ver02-02 UI refinements"
+          git push origin main
